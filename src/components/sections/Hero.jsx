@@ -1,80 +1,87 @@
 import React from 'react';
-import { ArrowUpRight, Users } from 'lucide-react';
+import { ArrowUpRight, Users, Award, Target, Globe, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import localImageHero1 from '../../assets/images/img_ae481ea0.jpg';
+import { motion } from 'framer-motion';
+import heroImg from '../../assets/images/hero_hr.png';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-[95vh] flex items-center pt-44 pb-20 overflow-hidden bg-slate-50 font-outfit">
-      {/* Static Decoration */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 -skew-x-12 transform origin-top translate-x-1/4" />
-
+    <section id="home" className="relative min-h-[90vh] flex items-center pt-56 pb-20 overflow-hidden bg-[#020C1F] font-inter">
+      {/* Dynamic Background Decorations */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-600/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" 
+      />
+      
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          
           {/* Left Content */}
-          <div>
-            <div className="inline-flex items-center gap-3 px-5 py-2 bg-white rounded-full border border-slate-200 mb-8 shadow-sm">
-              <div className="w-2 h-2 bg-accent rounded-full" />
-              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">ISO 9001:2008 Certified Company</span>
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-white space-y-10 flex flex-col items-center text-center lg:items-start lg:text-left"
+          >
+            <div className="space-y-6">
+              <h1 className="text-[24px] md:text-[38px] font-bold leading-[1.2] tracking-tight mx-auto lg:mx-0">
+                We Help You Achieve <span className="text-[#D97706]">Success</span> With Our <span className="text-blue-400">Manpower Solutions</span>
+              </h1>
+              
+              <p className="text-[11px] md:text-[14px] text-white/70 max-w-2xl leading-[1.6] font-normal mx-auto lg:mx-0">
+                From building teams on your payroll to contractual and remote teams, from a people first approach to technology driven outsourcing solutions, we are your success partners.
+              </p>
             </div>
-
-            <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight mb-8 tracking-tight">
-              Empowering Businesses with <span className="text-accent">Elite Talent</span> & Strategic HR.
-            </h1>
-
-            <p className="text-lg text-slate-600 mb-10 max-w-xl leading-relaxed">
-              Abhilekha Information Pvt. Ltd. is Bangalore's premier HR partner, bridging the gap between global visionaries and top-tier talent since 2004.
-            </p>
-
-            <div className="flex flex-wrap gap-6 mb-14">
-              <Link 
-                to="/services" 
-                className="bg-[#F29100] hover:bg-[#D97706] text-white px-10 py-4.5 rounded-2xl font-black text-xl flex items-center gap-3 transition-all shadow-[0_20px_50px_-15px_rgba(242,145,0,0.5)] hover:scale-105 active:scale-95 border-2 border-white/10"
-              >
-                Explore Services <ArrowUpRight className="w-7 h-7" />
-              </Link>
+            
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-4 w-full lg:w-auto">
               <Link 
                 to="/contact" 
-                className="bg-[#0F172A] hover:bg-slate-800 text-white px-10 py-4.5 rounded-2xl font-black text-xl transition-all shadow-[0_20px_50px_-15px_rgba(15,23,42,0.4)] hover:scale-105 active:scale-95 border-2 border-white/10"
+                className="group relative inline-block bg-[#D97706] hover:bg-[#B45309] text-white px-8 py-3.5 rounded-xl font-semibold text-[18px] transition-all hover:shadow-[0_0_40px_rgba(217,119,6,0.3)] hover:scale-105 active:scale-95 mx-auto lg:mx-0 overflow-hidden"
               >
-                Connect With Us
+                <motion.div 
+                  className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700" 
+                  initial={false}
+                />
+                <span className="relative z-10">Talk To Us</span>
               </Link>
             </div>
 
-            <div className="grid grid-cols-3 gap-8 pt-10 border-t border-slate-200">
-              <div className="space-y-1">
-                <div className="text-2xl font-black text-primary">20+</div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Years Legacy</div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-2xl font-black text-primary">2,00,000+</div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Placements</div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-2xl font-black text-primary">250+</div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Global Clients</div>
-              </div>
-            </div>
-          </div>
+          </motion.div>
 
           {/* Right Visuals */}
-          <div className="relative hidden lg:block">
-            <div className="relative z-10 w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-              <img
-                src={localImageHero1}
-                alt="Modern Corporate Building"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent" />
-            </div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="relative"
+          >
+            {/* Main Circular Image Container */}
+            <div 
+              className="relative w-full aspect-square md:aspect-[1/1] max-w-[500px] ml-auto"
+            >
+              {/* Decorative Gold Circles */}
+              <div className="absolute -top-10 -left-10 w-[120%] h-[120%] border border-yellow-400/20 rounded-full pointer-events-none" />
+              
+              {/* The Blue Dot */}
+              <div className="absolute top-1/2 -left-4 w-10 h-10 bg-blue-600 rounded-full z-20 shadow-[0_0_20px_rgba(37,99,235,0.6)]" />
+              
+              {/* Image with Circular Mask */}
+              <div className="relative w-full h-full rounded-full overflow-hidden border-[15px] border-white/5 shadow-2xl">
+                <img 
+                  src={heroImg} 
+                  alt="Manpower Solutions" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-transparent pointer-events-none" />
+              </div>
 
-            {/* Floating Experience Badge */}
-            <div className="absolute -bottom-8 -left-12 bg-white p-8 rounded-2xl shadow-2xl border border-slate-100 flex flex-col gap-2 z-20">
-              <div className="text-4xl font-black text-primary">20+</div>
-              <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Years of Excellence</div>
+              {/* Enhanced Glow Decoration */}
+              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-48 h-24 bg-yellow-400/20 rounded-t-full blur-2xl" />
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>
@@ -83,4 +90,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

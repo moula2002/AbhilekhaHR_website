@@ -6,8 +6,8 @@ const ContactPage = () => {
   const locations = [
     {
       city: "Bangalore (Head Office)",
-      address: "#640, 46th 'A' Cross, 3rd Block, Rajajinagar, Bangalore - 560 010",
-      phone: "080-23507705 / 23148132",
+      address: "2nd & 3rd Floor, Surfa Coats, No. 640, 46th A Cross Rd, 3rd Block, Rajajinagar, Bengaluru, Karnataka 560010",
+      phone: "+91 80 2340 0510",
       email: "hr@abhilekha.com",
     },
     {
@@ -36,10 +36,6 @@ const ContactPage = () => {
           {/* Left Column: Locations */}
           <div className="space-y-12">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#F29100]/10 border border-[#F29100]/20 rounded-full mb-6">
-                <Globe size={14} className="text-[#F29100]" />
-                <span className="text-[#F29100] text-[10px] font-black uppercase tracking-[0.2em]">Our Presence Across India</span>
-              </div>
               <h2 className="text-white text-5xl md:text-6xl font-black tracking-tighter mb-4 leading-tight">
                 OUR <span className="text-[#F29100] italic underline decoration-white/10">LOCATIONS</span>
               </h2>

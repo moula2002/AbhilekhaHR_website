@@ -11,8 +11,8 @@ const Contact = () => {
     {
       city: "Bangalore",
       image: localImageContact1,
-      address: "#640, 46th 'A' Cross, 3rd Block, Rajajinagar, Bangalore - 560010",
-      phones: ["080-23148132", "080-23400510"],
+      address: "2nd & 3rd Floor, Surfa Coats, No. 640, 46th A Cross Rd, 3rd Block, Rajajinagar, Bengaluru, Karnataka 560010",
+      phones: ["+91 80 2340 0510"],
       emails: ["hr@abhilekha.com"]
     }
   ];

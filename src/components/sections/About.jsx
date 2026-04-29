@@ -1,96 +1,92 @@
 import React from 'react';
-import { Target, Award, CheckCircle2 } from 'lucide-react';
-import localImageAbout1 from '../../assets/images/img_3dd0e930.jpg';
-
-const highlights = [
-  "20+ Years of Excellence",
-  "ISO 9001:2008 Certified",
-  "350+ Trained Consultants",
-  "Network across PAN India",
-  "24x7 Dedicated Service",
-  "IT & Non-IT Specialization"
-];
-
-const values = [
-  { 
-    title: "Our Vision", 
-    desc: "Aim to be the most recognized Consulting Company in India. Abhilekha's Life Time Goal is to become an International HR Service Provider.",
-    icon: Target
-  },
-  { 
-    title: "Our Mission", 
-    desc: "We Enrich People in Corporate World by Providing Value Added and Dedicated Service. We create Customer Delight through Quality Service and Timely Delivery.",
-    icon: Award
-  }
-];
+import { motion } from 'framer-motion';
+import aboutTeamHero from '../../assets/images/about_team_hero.png';
 
 const About = () => {
   return (
-    <section id="about" className="py-32 bg-white overflow-hidden relative font-outfit">
+    <section id="about" className="py-28 bg-white overflow-hidden font-inter">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-24 items-center">
-          
-          {/* Visual Side */}
-          <div className="relative order-2 lg:order-1">
-             <div className="relative">
-                <div className="rounded-3xl overflow-hidden shadow-xl border-8 border-slate-50">
-                   <img 
-                    src={localImageAbout1} 
-                    alt="Office Environment" 
-                    className="w-full aspect-video lg:aspect-[4/5] object-cover" 
-                   />
-                </div>
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
 
-                {/* Experience Badge */}
-                <div className="absolute -bottom-8 -right-8 bg-primary p-8 rounded-2xl shadow-2xl text-white z-20 max-w-[240px]">
-                   <div className="text-5xl font-black mb-2 text-accent">20+</div>
-                   <div className="text-xs font-bold uppercase tracking-widest text-white/60">
-                     Years of HR Excellence in India.
-                   </div>
-                </div>
-             </div>
-          </div>
+          {/* LEFT CONTENT */}
+          <motion.div
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="space-y-10"
+          >
+            {/* Badge */}
+            <div className="inline-block px-5 py-2 bg-blue-100 text-blue-600 rounded-full text-xs font-bold uppercase tracking-[0.25em] shadow-sm">
+              The Abhilekha Legacy
+            </div>
 
-          {/* Content Side */}
-          <div className="order-1 lg:order-2">
-             <div className="inline-block px-4 py-1.5 bg-accent/10 text-accent rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8">
-               The Abhilekha Legacy
-             </div>
-             
-             <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight mb-8">
-               Bridging the Gap Between <span className="text-primary italic">Ambition</span> and Achievement.
-             </h3>
-             
-             <div className="space-y-6 mb-10">
-                <p className="text-lg text-slate-600 leading-relaxed font-medium">
-                  Abhilekha Information Pvt. Ltd. was established in the year 2004, having its Corporate Office in the Silicon City of Bangalore.
-                </p>
-                <p className="text-slate-500 leading-relaxed">
-                  Formed with the idea of providing complete HR Solutions across Corporate Sectors, we aim to be a one-stop solution for all HR needs. With a network of 350+ professionally trained recruitment consultants working 24x7 across PAN India, we render exceptional service to our valuable clients.
-                </p>
-             </div>
+            {/* Heading */}
+            <h2 className="text-[38px] md:text-[58px] font-extrabold leading-tight text-slate-900">
+              <span className="text-[#2563EB]">Transforming Ideas</span><br />
+              into Scalable Solutions
+            </h2>
 
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                {values.map((v, i) => (
-                  <div key={i} className="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all">
-                     <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-4 border border-slate-100">
-                        <v.icon className="w-6 h-6 text-accent" />
-                     </div>
-                     <h4 className="text-lg font-black text-slate-900 mb-2">{v.title}</h4>
-                     <p className="text-slate-500 text-sm leading-relaxed">{v.desc}</p>
-                  </div>
-                ))}
-             </div>
+            {/* Paragraph */}
+            <div className="space-y-6">
+              <p className="text-[17px] md:text-[19px] text-slate-600 leading-relaxed font-medium">
+                To be India's most trusted HR and compliance partner, empowering Global Capability Centres and businesses across 22+ states to scale confidently.
+              </p>
 
-             <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                {highlights.map((h, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                     <CheckCircle2 className="w-5 h-5 text-accent shrink-0" />
-                     <span className="text-slate-900 font-bold text-sm tracking-tight">{h}</span>
-                  </div>
-                ))}
-             </div>
-          </div>
+              <p className="text-[17px] md:text-[19px] text-slate-600 leading-relaxed">
+                We deliver customized recruitment, staffing, payroll, and multi-state compliance solutions that drive higher ROI, ensuring complete compliance and faster hiring for GCCs, IT, manufacturing, and beyond.
+              </p>
+            </div>
+
+            {/* CTA (Video style add panniruken) */}
+            <div>
+              <button className="px-7 py-3 bg-[#2563EB] text-white font-semibold rounded-xl shadow-lg hover:scale-105 hover:bg-blue-700 transition duration-300">
+                Explore More →
+              </button>
+            </div>
+          </motion.div>
+
+          {/* RIGHT IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* Image Container */}
+            <div className="rounded-[2.8rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15)] border-[10px] border-white group">
+              
+              <img
+                src={aboutTeamHero}
+                alt="Our Team"
+                className="w-full h-full object-cover transition duration-700 group-hover:scale-110"
+              />
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-transparent"></div>
+            </div>
+
+            {/* Glass Card (Video Style Highlight) */}
+            <div className="absolute top-8 right-8 backdrop-blur-xl bg-white/20 border border-white/30 shadow-xl p-5 rounded-2xl hidden md:block">
+              <p className="text-white text-sm font-semibold">Trusted by</p>
+              <h3 className="text-white text-2xl font-bold">500+ Clients</h3>
+            </div>
+
+            {/* Experience Badge */}
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ delay: 0.3, type: "spring" }}
+              className="absolute -bottom-10 -left-10 bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-3xl shadow-2xl text-white z-20 hidden md:block"
+            >
+              <div className="text-5xl font-black mb-2">20+</div>
+              <div className="text-xs font-bold uppercase tracking-widest text-white/70">
+                Years of Excellence
+              </div>
+            </motion.div>
+
+          </motion.div>
 
         </div>
       </div>
@@ -99,4 +95,3 @@ const About = () => {
 };
 
 export default About;
-

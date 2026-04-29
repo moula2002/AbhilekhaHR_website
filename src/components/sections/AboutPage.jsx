@@ -1,158 +1,278 @@
 import React from 'react';
-import { Target, Eye, Award, CheckCircle2, Mail } from 'lucide-react';
-import { Linkedin, Twitter } from '../ui/BrandIcons';
 import { motion } from 'framer-motion';
-import localImageAboutPage1 from '../../assets/images/img_82895828.jpg';
-import localImageAboutPage2 from '../../assets/images/img_7772b6fd.jpg';
-import localImageAboutPage3 from '../../assets/images/img_d15b6517.jpg';
-import localImageAboutPage4 from '../../assets/images/img_8b0c859a.jpg';
+import aboutTeamHero from '../../assets/images/about_team_hero.png';
+import aboutMission from '../../assets/images/about_mission.png';
+import aboutVision from '../../assets/images/about_vision.png';
+import aboutValues from '../../assets/images/about_values.png';
+import officeBuilding from '../../assets/images/office_building.png';
+import WhyUs from './WhyUs';
+import Testimonials from './Testimonials';
 
 const AboutPage = () => {
-  const management = [
+  const values = [
     {
-      name: "Shivaji",
-      role: "Managing Director",
-      initials: "AP",
-      image: localImageAboutPage4,
-      bio: "Over 20 years of experience in global recruitment and HR strategy."
+      num: "01/",
+      title: "Integrity & Transparency",
+      desc: "We believe in doing the right thing — with honesty, openness, and respect in every interaction.",
+      highlight: true
     },
     {
-      name: "Management Team",
-      role: "Operations Head",
-      initials: "CP",
-      image: localImageAboutPage2,
-      bio: "Specializing in operational excellence and large-scale placements."
+      num: "02/",
+      title: "Client Success First",
+      desc: "Our clients' goals drive our mission. We go beyond expectations to deliver lasting value and measurable results.",
+      highlight: false
     },
     {
-      name: "Executive Team",
-      role: "Technical Recruitment Head",
-      initials: "JNR",
-      image: localImageAboutPage3,
-      bio: "Focusing on niche IT recruitment and technical consulting."
+      num: "03/",
+      title: "Innovation at the Core",
+      desc: "We constantly evolve, embracing new technologies and ideas to create smarter, future-ready solutions.",
+      highlight: false
+    },
+    {
+      num: "04/",
+      title: "People Empowerment",
+      desc: "We invest in people — nurturing talent, encouraging creativity, and building careers that make a difference.",
+      highlight: false
+    },
+    {
+      num: "05/",
+      title: "Collaboration & Teamwork",
+      desc: "We work as one — collaborating across teams, industries, and geographies to achieve shared success.",
+      highlight: true
+    },
+    {
+      num: "06/",
+      title: "Global Excellence",
+      desc: "We combine local expertise with global standards to deliver consistent quality, everywhere we operate.",
+      highlight: false
     }
   ];
 
   return (
-    <div className="bg-white pt-20">
-      {/* Banner */}
-      <section className="relative h-64 md:h-96 flex items-center overflow-hidden bg-slate-900">
-        <div className="absolute inset-0 opacity-40">
-           <img 
-             src={localImageAboutPage1} 
-             className="w-full h-full object-cover"
-             alt="About Banner"
-           />
+    <div className="bg-white">
+      
+      {/* 1. Hero Section: Empowering Your Vision */}
+      <section className="relative h-screen flex items-end pb-24 overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src={aboutTeamHero} 
+            alt="Team Abhilekha" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
         </div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-center">
-           <h1 className="text-4xl md:text-7xl font-black text-white tracking-tight uppercase">ABOUT <span className="text-accent">US</span></h1>
-           <p className="text-white/60 mt-4 text-lg max-w-2xl mx-auto">Discover the legacy of Abhilekha Information Pvt. Ltd. and our commitment to elite recruitment.</p>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full text-white">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-[42px] md:text-[82px] font-bold leading-tight uppercase tracking-tighter"
+          >
+            Empowering Your Vision
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-[18px] md:text-[28px] text-white/80 font-medium max-w-3xl"
+          >
+            Collaborating to Build the Future of IT Solutions.
+          </motion.p>
         </div>
       </section>
 
-      {/* Vision & Mission */}
+      {/* 2. Transforming Ideas Section */}
+      <section className="py-24 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative order-2 lg:order-1"
+            >
+              <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-slate-50">
+                <img src={aboutTeamHero} alt="Our Team" className="w-full h-auto" />
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8 order-1 lg:order-2"
+            >
+              <h2 className="text-[36px] md:text-[52px] font-bold leading-tight text-slate-900">
+                <span className="text-[#2563EB]">Transforming Ideas</span> into Scalable Solutions
+              </h2>
+              <p className="text-[16px] md:text-[18px] text-slate-600 leading-relaxed">
+                Founded in 2004, Abhilekha is one of India's fastest-growing HR consulting and workforce solution providers. With a strong presence in Bangalore and offices across the region, we deliver cutting-edge technology services, staffing solutions, and business consulting to help enterprises scale efficiently.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Our Story Section */}
+      <section className="py-24 bg-slate-50/50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <h2 className="text-[32px] md:text-[42px] font-bold text-[#2563EB]">Our Story</h2>
+              <div className="space-y-6">
+                <p className="text-[16px] md:text-[18px] text-slate-700 leading-relaxed font-medium">
+                  What started as a small team of passionate experts has evolved into a global consulting organization. Over the years, we've partnered with hundreds of enterprises to modernize their processes, optimize operations, and unlock human potential.
+                </p>
+                <p className="text-[16px] md:text-[18px] text-slate-700 leading-relaxed">
+                  At Abhilekha, we blend technology, strategy, and people to build solutions that drive business growth and empower talent across the globe.
+                </p>
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white bg-white">
+                <img src={officeBuilding} alt="Abhilekha Office" className="w-full h-auto" />
+              </div>
+              {/* Badge Overlay */}
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 hidden md:block">
+                <p className="text-[#2563EB] font-bold text-lg">Headquarters</p>
+                <p className="text-slate-500 text-sm">Bangalore, India</p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Our Mission Section */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-slate-50 p-12 rounded-[3rem] border border-slate-100 relative overflow-hidden group">
-               <div className="absolute top-0 right-0 p-8">
-                  <Eye className="w-16 h-16 text-primary/10 group-hover:text-primary/20 transition-all" />
-               </div>
-               <h2 className="text-3xl font-black text-slate-900 mb-6 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white">
-                     <Eye size={20} />
-                  </div>
-                  Our Vision
-               </h2>
-               <p className="text-slate-600 leading-relaxed text-lg italic">
-                  "To be the most trusted global partner in human resource solutions, empowering organizations through precision-engineered recruitment and strategic talent management."
-               </p>
-            </div>
-
-            <div className="bg-slate-50 p-12 rounded-[3rem] border border-slate-100 relative overflow-hidden group">
-               <div className="absolute top-0 right-0 p-8">
-                  <Target className="w-16 h-16 text-accent/10 group-hover:text-accent/20 transition-all" />
-               </div>
-               <h2 className="text-3xl font-black text-slate-900 mb-6 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center text-white">
-                     <Target size={20} />
-                  </div>
-                  Our Mission
-               </h2>
-               <p className="text-slate-600 leading-relaxed text-lg">
-                  "To bridge the gap between world-class companies and elite talent by providing transparent, efficient, and innovative recruitment services that drive sustainable growth for both clients and candidates."
-               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Abhilekha */}
-      <section className="py-24 bg-slate-900 text-white overflow-hidden relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent opacity-50" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black mb-6">Why <span className="text-accent italic">Abhilekha?</span></h2>
-            <p className="text-white/40 text-lg max-w-2xl mx-auto">We don't just fill positions; we build the future of your organization.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { title: "Huge Databank", desc: "Access to a massive, verified database of candidates across all major sectors." },
-              { title: "Qualified Team", desc: "Highly experienced recruitment specialists who understand deep domain requirements." },
-              { title: "Quick TAT", desc: "Unmatched Turn Around Time on closures to meet your urgent delivery pressures." },
-              { title: "Niche Hiring", desc: "Expertise in Bulk, Fresher, and Niche technical hiring with precision." },
-              { title: "Flexible Models", desc: "Offering Permanent, C2H, and Contract Staffing to suit your project needs." },
-              { title: "Zero Cost Interviews", desc: "Conduct interviews at our office with dedicated support at zero additional cost." }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-white/5 border border-white/10 p-10 rounded-3xl hover:bg-white/10 transition-all">
-                <div className="w-12 h-12 bg-accent rounded-xl mb-6 flex items-center justify-center text-white">
-                  <CheckCircle2 size={24} />
-                </div>
-                <h3 className="text-xl font-black mb-4 uppercase tracking-tighter">{item.title}</h3>
-                <p className="text-white/60 leading-relaxed text-sm font-medium">{item.desc}</p>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="order-2 lg:order-1"
+            >
+              <div className="rounded-[2.5rem] overflow-hidden shadow-2xl">
+                <img src={aboutMission} alt="Our Mission" className="w-full h-auto" />
               </div>
-            ))}
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="order-1 lg:order-2 space-y-8"
+            >
+              <h2 className="text-[36px] md:text-[52px] font-bold text-slate-900">Our mission</h2>
+              <div className="space-y-6">
+                <p className="text-[16px] md:text-[18px] text-slate-600 leading-relaxed">
+                  Deliver customized recruitment, staffing, payroll, and multi-state compliance solutions that drive higher ROI, ensuring complete compliance and faster hiring for GCCs, IT, manufacturing, and beyond.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Management Team */}
-      <section className="py-24">
+      {/* 5. Our Vision Section */}
+      <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">Our <span className="text-[#0F172A]">Leadership</span></h2>
-            <p className="text-slate-500 text-lg max-w-2xl mx-auto">Guided by visionaries who have shaped the recruitment landscape for over two decades.</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-12">
-            {management.map((person, idx) => (
-              <div key={idx} className="group">
-                <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden mb-8 shadow-xl">
-                  <img src={person.image} alt={person.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60" />
-                  <div className="absolute top-6 left-6 w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center text-white font-black text-xl border border-white/20">
-                    {person.initials}
-                  </div>
-                </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-2">{person.name}</h3>
-                <p className="text-[#F29100] font-bold text-sm uppercase tracking-widest mb-4">{person.role}</p>
-                <p className="text-slate-500 leading-relaxed mb-6">{person.bio}</p>
-                <div className="flex gap-4">
-                  <a href="#" className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-slate-900 hover:text-white transition-all">
-                    <Linkedin size={18} />
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-slate-900 hover:text-white transition-all">
-                    <Twitter size={18} />
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-slate-900 hover:text-white transition-all">
-                    <Mail size={18} />
-                  </a>
-                </div>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <h2 className="text-[36px] md:text-[52px] font-bold text-slate-900">Our Vision</h2>
+              <div className="space-y-6">
+                <p className="text-[16px] md:text-[18px] text-slate-600 leading-relaxed font-medium">
+                  To be India's most trusted HR and compliance partner, empowering Global Capability Centres and businesses across 22+ states to scale confidently with seamless multi-state payroll, statutory compliance, and permanent staffing solutions.
+                </p>
               </div>
-            ))}
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="rounded-[2.5rem] overflow-hidden shadow-2xl"
+            >
+              <img src={aboutVision} alt="Our Vision" className="w-full h-auto" />
+            </motion.div>
           </div>
         </div>
       </section>
+
+      {/* 6. Values Section (Replaced Leadership) */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-left mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">Built on Trust. Driven by Innovation.</h2>
+            <p className="text-slate-500 text-lg max-w-2xl">
+              At Abhilekha, our values define who we are and how we work. They guide every partnership, project, and promise we deliver.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            {/* Left Values */}
+            <div className="space-y-6">
+              {values.slice(0, 3).map((v, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`p-8 rounded-3xl border transition-all ${v.highlight ? 'bg-[#2563EB] text-white border-[#2563EB]' : 'bg-white text-slate-900 border-slate-100 shadow-sm hover:shadow-md'}`}
+                >
+                  <div className={`text-2xl font-bold mb-4 ${v.highlight ? 'text-white/50' : 'text-slate-300'}`}>{v.num}</div>
+                  <h3 className="text-xl font-bold mb-3">{v.title}</h3>
+                  <p className={`text-sm leading-relaxed ${v.highlight ? 'text-white/80' : 'text-slate-500'}`}>{v.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Center Image */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl lg:order-2"
+            >
+              <img src={aboutValues} alt="Innovation" className="w-full h-full object-cover" />
+            </motion.div>
+
+            {/* Right Values */}
+            <div className="space-y-6">
+              {values.slice(3, 6).map((v, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: (i + 3) * 0.1 }}
+                  className={`p-8 rounded-3xl border transition-all ${v.highlight ? 'bg-[#2563EB] text-white border-[#2563EB]' : 'bg-white text-slate-900 border-slate-100 shadow-sm hover:shadow-md'}`}
+                >
+                  <div className={`text-2xl font-bold mb-4 ${v.highlight ? 'text-white/50' : 'text-slate-300'}`}>{v.num}</div>
+                  <h3 className="text-xl font-bold mb-3">{v.title}</h3>
+                  <p className={`text-sm leading-relaxed ${v.highlight ? 'text-white/80' : 'text-slate-500'}`}>{v.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <WhyUs />
+      <Testimonials />
+
     </div>
   );
 };

@@ -3,21 +3,23 @@ import Hero from './Hero';
 import Stats from './Stats';
 import Verticals from './Verticals';
 import Clients from './Clients';
-import Services from './Services';
-import About from './About';
 import Contact from './Contact';
 import Testimonials from './Testimonials';
 import Gallery from './Gallery';
+import VisionMission from './VisionMission';
+import WhyUs from './WhyUs';
 
 const Home = () => {
   return (
     <>
       <Hero />
+      <div className="h-12 bg-white" />
       <Stats />
+      <div className="h-12 bg-white" />
       <Verticals />
+      <VisionMission />
       <Clients />
-      <Services />
-      <About />
+      <WhyUs />
       <Gallery />
       <Testimonials />
     </>
