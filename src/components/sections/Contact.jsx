@@ -1,14 +1,36 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, X } from 'lucide-react';
 import { Facebook, Twitter, Instagram, Linkedin, Youtube } from '../ui/BrandIcons';
 import { cn } from '../../lib/utils';
-import localImageContact1 from '../../assets/images/img_df00f7ba.jpg';
 
 const Contact = () => {
-  const [activeLocation, setActiveLocation] = useState('Bangalore');
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '', source: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('idle');
+  const [showMap, setShowMap] = useState(false);
+
+  const MapModal = () => (
+    <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-10">
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setShowMap(false)} />
+      <div className="relative bg-white w-full max-w-5xl rounded-[2rem] overflow-hidden shadow-2xl animate-in zoom-in duration-300">
+        <button 
+          onClick={() => setShowMap(false)}
+          className="absolute top-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-slate-50 transition-colors z-10"
+        >
+          <X className="text-slate-900" size={24} />
+        </button>
+        <div className="aspect-video w-full">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.749260646749!2d77.5545767!3d12.987882699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3d8cffffffff%3A0xce538e969aae15db!2sAbhilekha%20Information%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1777529971408!5m2!1sen!2sin" 
+            className="w-full h-full border-0"
+            allowFullScreen="" 
+            loading="lazy" 
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+      </div>
+    </div>
+  );
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +53,7 @@ const Contact = () => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        setFormData({ name: '', email: '', phone: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', message: '', source: '' });
       } else {
         setSubmitStatus('error');
       }
@@ -43,171 +65,153 @@ const Contact = () => {
     }
   };
 
-  const locations = [
-    {
-      city: "Bangalore",
-      image: localImageContact1,
-      address: "2nd & 3rd Floor, Surfa Coats, No. 640, 46th A Cross Rd, 3rd Block, Rajajinagar, Bengaluru, Karnataka 560010",
-      phones: ["+91 80 2340 0510"],
-      emails: ["hr@abhilekha.com"]
-    }
-  ];
-
   return (
-    <section id="contact" className="py-24 bg-white overflow-hidden font-outfit">
+    <section id="contact" className="py-24 bg-[#F9FAFB] font-outfit">
+      {showMap && <MapModal />}
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-           <div className="inline-block px-4 py-1.5 bg-slate-900/5 text-slate-900 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-6">
-             Head Office
-           </div>
-           <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter uppercase">OUR <span className="text-[#F29100]">LOCATION</span></h2>
-           <p className="text-slate-500 text-lg max-w-2xl mx-auto">Visit our corporate headquarters in Bangalore for direct consultations.</p>
-        </div>
-
-        <div className="grid lg:grid-cols-12 gap-12">
-          {/* Location Details */}
-          <div className="lg:col-span-7 space-y-8">
-            <div className="bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-2xl relative group">
-               <div className="aspect-video w-full overflow-hidden">
-                  <img 
-                    src={locations[0].image} 
-                    alt="Bangalore Head Office" 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" 
-                  />
-               </div>
-               <div className="p-10 space-y-8 relative z-10">
-                  <div className="flex items-start gap-6">
-                      <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center shrink-0">
-                        <MapPin className="text-white" size={24} />
-                      </div>
-                      <div>
-                        <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.2em] mb-2">Corporate Office</p>
-                        <p className="text-white text-lg font-medium leading-relaxed">{locations[0].address}</p>
-                      </div>
+        <div className="bg-white rounded-[2rem] shadow-sm p-8 md:p-16">
+          <div className="grid lg:grid-cols-2 gap-16">
+            
+            {/* Left Column: Contact Info */}
+            <div className="space-y-12 text-left">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">Contact Us</h2>
+              
+              <div className="space-y-8">
+                {/* Phone */}
+                <div className="flex items-center gap-6">
+                  <div className="w-16 h-16 bg-[#EBF5FF] rounded-2xl flex items-center justify-center shrink-0">
+                    <Phone className="text-[#3B82F6]" size={28} />
                   </div>
-
-                  <div className="grid md:grid-cols-2 gap-8">
-                     <div className="flex items-start gap-6">
-                        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0 border border-white/10">
-                           <Phone className="text-[#F29100]" size={24} />
-                        </div>
-                        <div>
-                           <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.2em] mb-2">Phones</p>
-                           {locations[0].phones.map(p => (
-                             <p key={p} className="text-white font-bold">{p}</p>
-                           ))}
-                        </div>
-                     </div>
-                     <div className="flex items-start gap-6">
-                        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0 border border-white/10">
-                           <Mail className="text-[#F29100]" size={24} />
-                        </div>
-                        <div>
-                           <p className="text-white/40 text-[10px] font-black uppercase tracking-[0.2em] mb-2">Emails</p>
-                           {locations[0].emails.map(e => (
-                             <p key={e} className="text-white font-bold">{e}</p>
-                           ))}
-                        </div>
-                     </div>
+                  <div>
+                    <p className="text-slate-500 text-sm font-medium mb-1">Phone Number</p>
+                    <p className="text-slate-900 text-xl font-bold">+91 80 2340 0510</p>
                   </div>
-               </div>
-            </div>
-          </div>
+                </div>
 
-          {/* Contact Form */}
-          <div className="lg:col-span-5">
-             <div className="bg-white p-10 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-2xl sticky top-24">
-                <h3 className="text-3xl font-black text-slate-900 mb-8 tracking-tighter uppercase">Enquire Now</h3>
-                
-                {submitStatus === 'success' ? (
-                  <div className="bg-green-50 border border-green-200 text-green-700 p-8 rounded-2xl text-center space-y-4">
-                    <CheckCircle2 className="w-16 h-16 mx-auto text-green-500" />
-                    <h4 className="text-xl font-bold">Thank You!</h4>
-                    <p>Your message has been sent successfully. We will get back to you soon.</p>
+                {/* Email */}
+                <div className="flex items-center gap-6">
+                  <div className="w-16 h-16 bg-[#EBF5FF] rounded-2xl flex items-center justify-center shrink-0">
+                    <Mail className="text-[#3B82F6]" size={28} />
+                  </div>
+                  <div>
+                    <p className="text-slate-500 text-sm font-medium mb-1">Email</p>
+                    <p className="text-slate-900 text-xl font-bold">info@abhilekha.com</p>
+                  </div>
+                </div>
+
+                {/* Address */}
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 bg-[#EBF5FF] rounded-2xl flex items-center justify-center shrink-0">
+                    <MapPin className="text-[#3B82F6]" size={28} />
+                  </div>
+                  <div>
+                    <p className="text-slate-500 text-sm font-medium mb-1">Corporate Office</p>
+                    <p className="text-slate-900 text-xl font-bold leading-snug">2nd & 3rd Floor, Surfa Coats, No. 640, 46th A Cross Rd, 3rd Block, Rajajinagar, Bengaluru, Karnataka 560010</p>
                     <button 
-                      onClick={() => setSubmitStatus('idle')}
-                      className="mt-4 px-6 py-2 bg-green-100 hover:bg-green-200 rounded-xl font-bold transition-colors"
+                      onClick={() => setShowMap(true)}
+                      className="text-[#3B82F6] font-bold text-sm underline underline-offset-4 mt-2 hover:text-[#2563EB] transition-colors"
                     >
-                      Send Another
+                      View Map
                     </button>
                   </div>
-                ) : (
-                  <form className="space-y-6" onSubmit={handleSubmit}>
-                     {submitStatus === 'error' && (
-                        <div className="bg-red-50 text-red-600 p-4 rounded-xl text-sm font-bold border border-red-100">
-                          Failed to send message. Please try again.
-                        </div>
-                     )}
-                     <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Full Name</label>
-                        <input 
-                          type="text" 
-                          name="name"
-                          required
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-slate-900/20 transition-all text-slate-900 font-bold" 
-                          placeholder="Your Name" 
-                        />
-                     </div>
-                     <div className="grid md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                           <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Email</label>
-                           <input 
-                             type="email" 
-                             name="email"
-                             required
-                             value={formData.email}
-                             onChange={handleInputChange}
-                             className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-slate-900/20 transition-all text-slate-900 font-bold" 
-                             placeholder="Email" 
-                           />
-                        </div>
-                        <div className="space-y-2">
-                           <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone</label>
-                           <input 
-                             type="tel" 
-                             name="phone"
-                             value={formData.phone}
-                             onChange={handleInputChange}
-                             className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-slate-900/20 transition-all text-slate-900 font-bold" 
-                             placeholder="Phone" 
-                           />
-                        </div>
-                     </div>
-                     <div className="space-y-2">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Message</label>
-                        <textarea 
-                          name="message"
-                          required
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-slate-900/20 transition-all text-slate-900 font-bold min-h-[120px] resize-none" 
-                          placeholder="How can we help?" 
-                        />
-                     </div>
-                      <button 
-                        type="submit" 
-                        disabled={isSubmitting}
-                        className="w-full bg-slate-900 hover:bg-[#F29100] text-white font-black py-5 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 group disabled:opacity-70 disabled:cursor-not-allowed"
-                      >
-                         {isSubmitting ? 'Sending...' : 'Submit Enquiry'} 
-                         {!isSubmitting && <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
-                      </button>
-                  </form>
-                )}
-
-                <div className="mt-12 pt-10 border-t border-slate-100">
-                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 text-center">Follow Our Success</p>
-                   <div className="flex justify-center gap-6">
-                      {[Linkedin, Instagram, Twitter, Facebook, Youtube].map((Icon, idx) => (
-                        <a key={idx} href="#" className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all shadow-sm">
-                           <Icon size={20} />
-                        </a>
-                      ))}
-                   </div>
                 </div>
-             </div>
+              </div>
+
+              <div className="pt-8 border-t border-slate-100">
+                <p className="text-slate-900 font-bold mb-6">Follow Us</p>
+                <div className="flex gap-4">
+                  <a href="https://in.linkedin.com/company/abhilekha-information-pvt-ltd---india" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-[#0077B5] rounded-full flex items-center justify-center text-white transition-transform hover:scale-110">
+                    <Linkedin size={18} fill="currentColor" />
+                  </a>
+                  <a href="https://x.com/AbhikelhaInfo" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white transition-transform hover:scale-110">
+                    <Twitter size={18} />
+                  </a>
+                  <a href="https://www.facebook.com/AbhilekhaJobs" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-[#1877F2] rounded-full flex items-center justify-center text-white transition-transform hover:scale-110">
+                    <Facebook size={18} fill="currentColor" />
+                  </a>
+                  <a href="https://www.instagram.com/popular/abhilekha-information-pvt-ltd/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] rounded-full flex items-center justify-center text-white transition-transform hover:scale-110">
+                    <Instagram size={18} />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Form */}
+            <div className="space-y-10 text-left">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">Get in Touch</h2>
+              
+              <form className="space-y-5" onSubmit={handleSubmit}>
+                {submitStatus === 'success' ? (
+                  <div className="bg-green-50 border border-green-200 text-green-700 p-8 rounded-3xl text-center space-y-4">
+                    <CheckCircle2 className="w-16 h-16 mx-auto text-green-500" />
+                    <h4 className="text-2xl font-bold">Thank You!</h4>
+                    <p>Your message has been sent successfully.</p>
+                    <button onClick={() => setSubmitStatus('idle')} className="mt-4 px-8 py-3 bg-slate-900 text-white rounded-full font-bold transition-all">Send Another</button>
+                  </div>
+                ) : (
+                  <>
+                    <input 
+                      type="text" 
+                      name="name"
+                      placeholder="Name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 outline-none focus:border-slate-400 transition-all text-slate-900 font-medium placeholder:text-slate-400"
+                    />
+                    <input 
+                      type="tel" 
+                      name="phone"
+                      placeholder="PhoneNo."
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 outline-none focus:border-slate-400 transition-all text-slate-900 font-medium placeholder:text-slate-400"
+                    />
+                    <input 
+                      type="email" 
+                      name="email"
+                      placeholder="Email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 outline-none focus:border-slate-400 transition-all text-slate-900 font-medium placeholder:text-slate-400"
+                    />
+                    <div className="relative">
+                      <select 
+                        name="source"
+                        value={formData.source}
+                        onChange={handleInputChange}
+                        className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-4 outline-none focus:border-slate-400 transition-all text-slate-900 font-medium appearance-none cursor-pointer"
+                      >
+                        <option value="" disabled>How did you hear about us?</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                        <option value="Search Engine">Search Engine</option>
+                        <option value="Referral">Referral</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                      </div>
+                    </div>
+                    <textarea 
+                      name="message"
+                      placeholder="Leave us a Message"
+                      required
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-6 outline-none focus:border-slate-400 transition-all text-slate-900 font-medium min-h-[160px] resize-none placeholder:text-slate-400"
+                    ></textarea>
+                    <button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="bg-[#1A1A1A] hover:bg-black text-white font-bold py-4 px-12 rounded-full transition-all text-lg disabled:opacity-70"
+                    >
+                      {isSubmitting ? 'Submitting...' : 'Submit'}
+                    </button>
+                  </>
+                )}
+              </form>
+            </div>
           </div>
         </div>
       </div>

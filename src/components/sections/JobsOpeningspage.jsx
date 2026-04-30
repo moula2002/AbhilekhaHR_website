@@ -87,9 +87,10 @@ const JobsOpeningspage = () => {
           email: formData.email,
           phone: formData.phone,
           position: formData.position,
+          experience: formData.experience,
           resumeData: resumeBase64,
           resumeName: formData.resume?.name,
-          message: `Application for ${formData.position} from ${formData.name}.`
+          message: formData.message || `Application for ${formData.position} from ${formData.name}.`
         }),
       });
 
@@ -286,6 +287,17 @@ const JobsOpeningspage = () => {
                       />
                     </div>
                     <div className="space-y-2">
+                      <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Experience *</label>
+                      <input 
+                        type="text" 
+                        value={formData.experience}
+                        onChange={(e) => setFormData({...formData, experience: e.target.value})}
+                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded focus:outline-none focus:border-slate-900 transition-all" 
+                        placeholder="e.g. 2 Years" 
+                        required 
+                      />
+                    </div>
+                    <div className="space-y-2">
                       <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Resume Upload *</label>
                       <input 
                         type="file" 
@@ -294,10 +306,19 @@ const JobsOpeningspage = () => {
                         required 
                       />
                     </div>
+                    <div className="md:col-span-2 space-y-2">
+                      <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Message / Cover Note</label>
+                      <textarea 
+                        value={formData.message}
+                        onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded focus:outline-none focus:border-slate-900 transition-all min-h-[100px] resize-none" 
+                        placeholder="Tell us more about yourself..." 
+                      />
+                    </div>
                     <div className="md:col-span-2 pt-2">
                       <button 
                         type="submit" 
-                        disabled={loading && !jobs.length === 0}
+                        disabled={loading}
                         className="w-full bg-slate-900 text-white py-4 rounded font-bold uppercase tracking-widest hover:bg-black transition-all shadow-md disabled:opacity-50"
                       >
                         {submitted ? "Submitted Successfully!" : "Submit Resume"}

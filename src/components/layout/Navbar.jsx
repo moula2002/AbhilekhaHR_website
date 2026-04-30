@@ -66,10 +66,6 @@ const Navbar = () => {
               <Mail size={14} className="text-[#D97706]" />
               <span className="hidden lg:inline">info@abhilekha.com</span>
             </a>
-            <a href="mailto:abhilekhainformation@gmail.com" className="flex items-center gap-2 hover:text-[#D97706] transition-colors">
-              <Mail size={14} className="text-[#D97706]" />
-              <span className="hidden xl:inline">abhilekhainformation@gmail.com</span>
-            </a>
             <a href="tel:+918023400510" className="flex items-center gap-2 hover:text-[#D97706] transition-colors">
               <Phone size={14} className="text-[#D97706]" />
               <span className="hidden sm:inline">+91 80 2340 0510</span>
@@ -253,10 +249,6 @@ const Navbar = () => {
             <a href="mailto:info@abhilekha.com" className="flex items-center gap-3 text-slate-600 hover:text-[#D97706]">
               <Mail size={18} className="text-[#D97706]" />
               <span className="font-medium text-sm">info@abhilekha.com</span>
-            </a>
-            <a href="mailto:abhilekhainformation@gmail.com" className="flex items-center gap-3 text-slate-600 hover:text-[#D97706]">
-              <Mail size={18} className="text-[#D97706]" />
-              <span className="font-medium text-sm truncate">abhilekhainformation@gmail.com</span>
             </a>
             <div className="flex items-center gap-4 mt-2">
               <a href="https://www.facebook.com/AbhilekhaJobs" target="_blank" rel="noopener noreferrer"><Facebook size={18} className="text-slate-400 hover:text-[#D97706] transition-colors" /></a>
