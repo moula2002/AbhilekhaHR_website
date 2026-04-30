@@ -3,6 +3,46 @@ import { Mail, Phone, MapPin, Send, CheckCircle2, Globe } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const ContactPage = () => {
+  const [formData, setFormData] = useState({ name: '', companyName: '', email: '', phone: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('idle');
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          subject: formData.companyName ? `New Contact from ${formData.name} at ${formData.companyName}` : `New Contact from ${formData.name}`
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', companyName: '', email: '', phone: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const locations = [
     {
       city: "Bangalore (Head Office)",
@@ -81,58 +121,97 @@ const ContactPage = () => {
             </h2>
             <p className="text-slate-400 font-medium mb-10">We usually respond within 2 business hours.</p>
 
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Your Name</label>
-                  <input 
-                    type="text" 
-                    className="w-full bg-slate-50 border-2 border-slate-100 px-6 py-4 rounded-2xl outline-none focus:border-[#D4B56F] transition-all text-slate-900 font-bold"
-                    placeholder="John Doe"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Company Name</label>
-                  <input 
-                    type="text" 
-                    className="w-full bg-slate-50 border-2 border-slate-100 px-6 py-4 rounded-2xl outline-none focus:border-[#D4B56F] transition-all text-slate-900 font-bold"
-                    placeholder="Company Ltd"
-                  />
-                </div>
+            {submitStatus === 'success' ? (
+              <div className="bg-green-50/10 border border-green-500/30 text-green-400 p-8 rounded-3xl text-center space-y-4">
+                <CheckCircle2 className="w-16 h-16 mx-auto text-green-500" />
+                <h4 className="text-2xl font-bold text-white">Thank You!</h4>
+                <p>Your message has been sent successfully. We will get back to you soon.</p>
+                <button 
+                  onClick={() => setSubmitStatus('idle')}
+                  className="mt-6 px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-bold transition-colors"
+                >
+                  Send Another Message
+                </button>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Email ID</label>
-                  <input 
-                    type="email" 
-                    className="w-full bg-slate-50 border-2 border-slate-100 px-6 py-4 rounded-2xl outline-none focus:border-[#D4B56F] transition-all text-slate-900 font-bold"
-                    placeholder="hr@company.com"
-                  />
+            ) : (
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                {submitStatus === 'error' && (
+                  <div className="bg-red-500/10 text-red-400 p-4 rounded-xl text-sm font-bold border border-red-500/30">
+                    Failed to send message. Please try again.
+                  </div>
+                )}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Your Name</label>
+                    <input 
+                      type="text" 
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full bg-slate-50 border-2 border-slate-100 px-6 py-4 rounded-2xl outline-none focus:border-[#D4B56F] transition-all text-slate-900 font-bold"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Company Name</label>
+                    <input 
+                      type="text" 
+                      name="companyName"
+                      value={formData.companyName}
+                      onChange={handleInputChange}
+                      className="w-full bg-slate-50 border-2 border-slate-100 px-6 py-4 rounded-2xl outline-none focus:border-[#D4B56F] transition-all text-slate-900 font-bold"
+                      placeholder="Company Ltd"
+                    />
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Email ID</label>
+                    <input 
+                      type="email" 
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full bg-slate-50 border-2 border-slate-100 px-6 py-4 rounded-2xl outline-none focus:border-[#D4B56F] transition-all text-slate-900 font-bold"
+                      placeholder="hr@company.com"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone Number</label>
+                    <input 
+                      type="tel" 
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full bg-slate-50 border-2 border-slate-100 px-6 py-4 rounded-2xl outline-none focus:border-[#D4B56F] transition-all text-slate-900 font-bold"
+                      placeholder="+91 98765 43210"
+                    />
+                  </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone Number</label>
-                  <input 
-                    type="tel" 
-                    className="w-full bg-slate-50 border-2 border-slate-100 px-6 py-4 rounded-2xl outline-none focus:border-[#D4B56F] transition-all text-slate-900 font-bold"
-                    placeholder="+91 98765 43210"
-                  />
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Message</label>
+                  <textarea 
+                    name="message"
+                    required
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className="w-full bg-slate-50 border-2 border-slate-100 px-6 py-6 rounded-2xl outline-none focus:border-[#D4B56F] transition-all text-slate-900 font-bold min-h-[180px] resize-none"
+                    placeholder="How can we help you?"
+                  ></textarea>
                 </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Message</label>
-                <textarea 
-                  className="w-full bg-slate-50 border-2 border-slate-100 px-6 py-6 rounded-2xl outline-none focus:border-[#D4B56F] transition-all text-slate-900 font-bold min-h-[180px] resize-none"
-                  placeholder="How can we help you?"
-                ></textarea>
-              </div>
-              
-              <button 
-                type="submit" 
-                className="w-full bg-[#F29100] hover:bg-slate-900 hover:text-white text-slate-900 font-black py-5 rounded-2xl text-xl transition-all shadow-xl shadow-[#F29100]/20 flex items-center justify-center gap-3 group"
-              >
-                Send Message <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </button>
-            </form>
+                
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full bg-[#F29100] hover:bg-slate-900 hover:text-white text-slate-900 font-black py-5 rounded-2xl text-xl transition-all shadow-xl shadow-[#F29100]/20 flex items-center justify-center gap-3 group disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'} 
+                  {!isSubmitting && <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+                </button>
+              </form>
+            )}
           </div>
 
         </div>

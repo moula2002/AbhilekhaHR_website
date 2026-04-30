@@ -63,10 +63,49 @@ const JobsOpeningspage = () => {
     fetchJobs();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setLoading(true);
+
+    try {
+      let resumeBase64 = null;
+      if (formData.resume) {
+        resumeBase64 = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(formData.resume);
+        });
+      }
+
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          position: formData.position,
+          resumeData: resumeBase64,
+          resumeName: formData.resume?.name,
+          message: `Application for ${formData.position} from ${formData.name}.`
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', phone: '', position: '', experience: '', resume: null, message: '' });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        alert("Failed to submit application. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting application:", error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -85,7 +124,7 @@ const JobsOpeningspage = () => {
             </div>
 
             <div className="space-y-6">
-              {loading ? (
+              {loading && jobs.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-20 bg-white border border-slate-100 rounded-2xl animate-pulse">
                    <div className="w-12 h-12 border-4 border-slate-200 border-t-slate-900 rounded-full animate-spin mb-4" />
                    <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Loading Openings...</p>
@@ -225,6 +264,17 @@ const JobsOpeningspage = () => {
                       />
                     </div>
                     <div className="space-y-2">
+                      <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Email Address *</label>
+                      <input 
+                        type="email" 
+                        value={formData.email}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded focus:outline-none focus:border-slate-900 transition-all" 
+                        placeholder="Enter email" 
+                        required 
+                      />
+                    </div>
+                    <div className="space-y-2">
                       <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Phone *</label>
                       <input 
                         type="tel" 
@@ -235,17 +285,21 @@ const JobsOpeningspage = () => {
                         required 
                       />
                     </div>
-                    <div className="md:col-span-2 space-y-2">
+                    <div className="space-y-2">
                       <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Resume Upload *</label>
                       <input 
                         type="file" 
                         onChange={(e) => setFormData({...formData, resume: e.target.files[0]})}
-                        className="w-full bg-slate-50 border-2 border-dashed border-slate-200 p-4 rounded text-sm text-slate-500" 
+                        className="w-full bg-slate-50 border-2 border-dashed border-slate-200 p-2.5 rounded text-sm text-slate-500" 
                         required 
                       />
                     </div>
                     <div className="md:col-span-2 pt-2">
-                      <button type="submit" className="w-full bg-slate-900 text-white py-4 rounded font-bold uppercase tracking-widest hover:bg-black transition-all shadow-md">
+                      <button 
+                        type="submit" 
+                        disabled={loading && !jobs.length === 0}
+                        className="w-full bg-slate-900 text-white py-4 rounded font-bold uppercase tracking-widest hover:bg-black transition-all shadow-md disabled:opacity-50"
+                      >
                         {submitted ? "Submitted Successfully!" : "Submit Resume"}
                       </button>
                     </div>
