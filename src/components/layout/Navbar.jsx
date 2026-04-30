@@ -73,7 +73,7 @@ const Navbar = () => {
             </a>
             <div className="hidden md:flex items-center gap-2 border-l border-white/20 pl-6">
               <Clock size={14} className="text-[#D97706]" />
-              <span>Mon - Fri, 9:00 AM - 6:00 PM</span>
+              <span>Mon - Fri, 9:30 AM - 5:30 PM</span>
             </div>
           </div>
           
