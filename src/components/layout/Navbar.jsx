@@ -32,7 +32,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', to: '/', active: pathname === '/' },
     { name: 'About Us', to: '/about', active: pathname === '/about' },
-    { name: 'Candidates', to: '/candidates', active: pathname === '/candidates' },
+   
     {
       name: 'Services',
       hasDropdown: true,
@@ -40,9 +40,11 @@ const Navbar = () => {
         { label: 'IT Recruitment', to: '/it-recruitment' },
         { label: 'Non-IT Recruitment', to: '/non-it-recruitment' },
         { label: 'IT Staffing', to: '/it-staffing' },
-        { label: 'Training Programmes', to: '/training-programmes' }
+        { label: 'Training Programmes', to: '/training-programmes' },
+        { label: 'Training & Development', to: '/training-development' }
       ]
     },
+     { name: 'Candidates', to: '/candidates', active: pathname === '/candidates' },
     {
       name: 'Client Zone',
       hasDropdown: true,

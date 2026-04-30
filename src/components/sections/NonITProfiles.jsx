@@ -16,7 +16,9 @@ import {
   ShieldCheck
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import GetInTouch from "./GetInTouch";
 import heroBanner from '../../assets/images/hero_hr.png';
+import teamImage from '../../assets/images/non_it_team_new.jpg';
 import localImageNonITProfiles2 from '../../assets/images/img_bf5f7d11.jpg';
 import localImageNonITProfiles6 from '../../assets/images/img_82365e9b.jpg';
 
@@ -80,7 +82,7 @@ const nonItSectors = [
 const NonITProfiles = () => {
   return (
     <section id="non-it-profiles" className="bg-slate-50 font-inter">
-      
+
       {/* Hero */}
       <div className="relative h-screen flex items-center justify-center overflow-hidden text-center">
         <div className="absolute inset-0">
@@ -93,64 +95,34 @@ const NonITProfiles = () => {
           </h1>
         </div>
       </div>
+      {/* About Service Section */}
+      <div className="max-w-7xl mx-auto px-6 py-20">
+        <h2 className="text-4xl md:text-5xl font-black text-slate-900 text-center mb-16 uppercase tracking-tight">
+          Non IT Recruitment
+        </h2>
 
-      {/* ================= ABOUT US ================= */}
-      <div className="max-w-6xl mx-auto px-6 pt-16">
-        <div className="mb-12">
-          <div className="flex items-center bg-orange-400 text-black font-bold text-3xl px-6 py-4 rounded-md">
-            About Us
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="rounded-3xl overflow-hidden shadow-2xl">
+            <img
+              src={teamImage}
+              alt="Our Non-IT Team"
+              className="w-full h-full object-cover"
+            />
           </div>
-          <ul className="mt-6 text-lg text-slate-700 list-none space-y-4 leading-relaxed">
-            <li className="relative pl-6">
-              <span className="absolute left-0 top-2.5 w-2 h-2 rounded-full bg-orange-500"></span>
-              Abhilekha Information Pvt. Ltd, was established in the year 2004 having it's Corporate Office in the Silicon city of Bangalore. Company was formed with the idea of providing complete HR Solutions Across the Corporate Sectors & aims to be a one Stop Solution for all HR Needs.
-            </li>
-            <li className="relative pl-6">
-              <span className="absolute left-0 top-2.5 w-2 h-2 rounded-full bg-orange-500"></span>
-              Abhilekha Information Pvt. Ltd has very effective database run by Professional who have a rich and thorough understanding of the industry, supported by veterans who a wide experience in the field of HR, Recruitment, Outsourcing, Management, Consulting, Training, and Marketing.
-            </li>
-            <li className="relative pl-6">
-              <span className="absolute left-0 top-2.5 w-2 h-2 rounded-full bg-orange-500"></span>
-              Abhilekha Information Pvt. Ltd has a network of 350 Professionally trained Recruitment consultants working 24x7 across PAN India in order to render the service to our valuable clients at various domains.
-            </li>
-          </ul>
+
+          <div className="space-y-8">
+            <p className="text-lg text-slate-600 leading-relaxed">
+              At <span className="font-bold text-slate-900">Abhilekha Information Pvt. Ltd</span>, known as the best recruitment agency, our non-IT recruitment services are specifically designed to cater to the unique needs of various industries outside the tech sector. We utilize our deep understanding of these industries, extensive professional networks, and advanced recruitment tools to source and place top talent swiftly and efficiently.
+            </p>
+            <p className="text-lg text-slate-600 leading-relaxed">
+              We are dedicated to building long-term partnerships with our clients and candidates. Beyond just filling positions, we provide valuable market insights, assist with employer branding, and offer post-placement support to ensure a successful match.
+            </p>
+          </div>
         </div>
       </div>
-
-      {/* ================= VISION ================= */}
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        
-        {/* Vision */}
-        <div className="mb-12">
-          <div className="flex items-center bg-orange-400 text-black font-bold text-3xl px-6 py-4 rounded-md">
-            Our Vision
-          </div>
-          <ul className="mt-6 text-lg text-slate-700 list-disc pl-6 leading-relaxed">
-            <li>
-              Aim to be the most recognized Consulting Company in India. 
-              Abhilekha's Life Time Goal is to become an International HR Service Provider.
-            </li>
-          </ul>
-        </div>
-
-        {/* Mission */}
-        <div>
-          <div className="flex items-center bg-orange-400 text-black font-bold text-3xl px-6 py-4 rounded-md">
-            Our Mission
-          </div>
-          <ul className="mt-6 text-lg text-slate-700 list-disc pl-6 leading-relaxed">
-            <li>
-              We Enrich People' in Corporate World by Providing Value Added and Dedicated Service. 
-              We create Customer Delight through Quality Service and Timely Delivery.
-            </li>
-          </ul>
-        </div>
-
-      </div>
-      {/* ========================================== */}
 
       <div className="max-w-7xl mx-auto px-6 py-24">
-        
+
         {/* Header */}
         <div className="max-w-3xl mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
@@ -174,8 +146,9 @@ const NonITProfiles = () => {
             </div>
           ))}
         </div>
-
       </div>
+
+      <GetInTouch />
     </section>
   );
 };

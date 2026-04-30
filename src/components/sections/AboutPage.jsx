@@ -8,6 +8,13 @@ import officeBuilding from '../../assets/images/office_building.png';
 import WhyUs from './WhyUs';
 import Testimonials from './Testimonials';
 
+// Authentic Gallery Images
+import gallary1 from '../../assets/images/Gallary 1.png';
+import gallary2 from '../../assets/images/Gallary2.png';
+import gallary3 from '../../assets/images/Gallary3.png';
+import gallary4 from '../../assets/images/gallary4.png';
+import gallary5 from '../../assets/images/gallary5.png';
+
 const AboutPage = () => {
   const values = [
     {
@@ -48,6 +55,14 @@ const AboutPage = () => {
     }
   ];
 
+  const galleryImages = [
+    { src: gallary1, title: "Our Corporate Office", size: "col-span-2 row-span-2" },
+    { src: gallary2, title: "Collaborative Workspace", size: "col-span-1 row-span-1" },
+    { src: gallary5, title: "Team in Action", size: "col-span-1 row-span-1" },
+    { src: gallary3, title: "Company Celebrations", size: "col-span-1 row-span-2" },
+    { src: gallary4, title: "The Abhilekha Team", size: "col-span-1 row-span-2" }
+  ];
+
   return (
     <div className="bg-white">
       
@@ -81,7 +96,7 @@ const AboutPage = () => {
       </section>
 
       {/* 2. Transforming Ideas Section */}
-      <section className="py-24 overflow-hidden">
+      <section className="py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-16 items-center">
             <motion.div 
@@ -112,7 +127,7 @@ const AboutPage = () => {
       </section>
 
       {/* 3. Our Story Section */}
-      <section className="py-24 bg-slate-50/50">
+      <section className="py-16 bg-slate-50/50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div 
@@ -140,7 +155,6 @@ const AboutPage = () => {
               <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white bg-white">
                 <img src={officeBuilding} alt="Abhilekha Office" className="w-full h-auto" />
               </div>
-              {/* Badge Overlay */}
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 hidden md:block">
                 <p className="text-[#2563EB] font-bold text-lg">Headquarters</p>
                 <p className="text-slate-500 text-sm">Bangalore, India</p>
@@ -151,7 +165,7 @@ const AboutPage = () => {
       </section>
 
       {/* 4. Our Mission Section */}
-      <section className="py-24">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-16 items-center">
             <motion.div 
@@ -182,7 +196,7 @@ const AboutPage = () => {
       </section>
 
       {/* 5. Our Vision Section */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-16 items-center">
             <motion.div 
@@ -210,8 +224,8 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* 6. Values Section (Replaced Leadership) */}
-      <section className="py-24 bg-white">
+      {/* 6. Values Section */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-left mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-4">Built on Trust. Driven by Innovation.</h2>
@@ -221,7 +235,6 @@ const AboutPage = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-            {/* Left Values */}
             <div className="space-y-6">
               {values.slice(0, 3).map((v, i) => (
                 <motion.div 
@@ -239,7 +252,6 @@ const AboutPage = () => {
               ))}
             </div>
 
-            {/* Center Image */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -249,7 +261,6 @@ const AboutPage = () => {
               <img src={aboutValues} alt="Innovation" className="w-full h-full object-cover" />
             </motion.div>
 
-            {/* Right Values */}
             <div className="space-y-6">
               {values.slice(3, 6).map((v, i) => (
                 <motion.div 
@@ -266,6 +277,45 @@ const AboutPage = () => {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Life at Abhilekha: Gallery Section */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20 space-y-6">
+            <div className="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-[10px] font-black uppercase tracking-widest">
+              Gallery
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900 uppercase tracking-tighter">
+              Life at <span className="text-blue-600">Abhilekha</span>
+            </h2>
+            <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+              Glimpses into our vibrant work environment and the people who make it happen.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 h-[800px]">
+            {galleryImages.map((image, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`relative rounded-[2.5rem] overflow-hidden group shadow-lg ${image.size}`}
+              >
+                <img 
+                  src={image.src} 
+                  alt={image.title} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                  <p className="text-white font-bold text-xl uppercase tracking-tight">{image.title}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

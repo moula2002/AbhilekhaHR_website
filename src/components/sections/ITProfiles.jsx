@@ -1,11 +1,11 @@
 import React from "react";
-import { 
-  Code2, 
-  Database, 
-  Cloud, 
-  Shield, 
-  Cpu, 
-  Smartphone, 
+import {
+  Code2,
+  Database,
+  Cloud,
+  Shield,
+  Cpu,
+  Smartphone,
   ArrowLeft,
   CheckCircle2,
   Globe,
@@ -13,7 +13,9 @@ import {
   Building2
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import GetInTouch from "./GetInTouch";
 import heroBanner from '../../assets/images/hero_hr.png';
+import teamImage from '../../assets/images/recruiter_pointing.png';
 import localImageITProfiles1 from '../../assets/images/img_3dd0e930.jpg';
 import localImageITProfiles2 from '../../assets/images/img_9b4e984d.jpg';
 
@@ -59,7 +61,7 @@ const itSectors = [
 const ITProfiles = () => {
   return (
     <section id="it-profiles" className="bg-slate-50 font-inter">
-      
+
       {/* Top Hero Banner */}
       <div className="relative h-screen flex items-center justify-center overflow-hidden text-center">
         <div className="absolute inset-0">
@@ -75,64 +77,34 @@ const ITProfiles = () => {
           </p>
         </div>
       </div>
-
-      {/* ================= ABOUT US ================= */}
-      <div className="max-w-7xl mx-auto px-6 pt-20">
-        <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-slate-200">
-          <h3 className="text-3xl font-bold text-orange-500 mb-8 uppercase tracking-wide border-b-2 border-orange-500/20 pb-4 inline-block">
-            About Us
-          </h3>
-          <ul className="space-y-6 text-slate-600 leading-relaxed text-lg list-none">
-            <li className="relative pl-8">
-              <span className="absolute left-0 top-2.5 w-2 h-2 rounded-full bg-orange-500"></span>
-              Abhilekha Information Pvt. Ltd, was established in the year 2004 having it's Corporate Office in the Silicon city of Bangalore. Company was formed with the idea of providing complete HR Solutions Across the Corporate Sectors & aims to be a one Stop Solution for all HR Needs.
-            </li>
-            <li className="relative pl-8">
-              <span className="absolute left-0 top-2.5 w-2 h-2 rounded-full bg-orange-500"></span>
-              Abhilekha Information Pvt. Ltd has very effective database run by Professional who have a rich and thorough understanding of the industry, supported by veterans who a wide experience in the field of HR, Recruitment, Outsourcing, Management, Consulting, Training, and Marketing.
-            </li>
-            <li className="relative pl-8">
-              <span className="absolute left-0 top-2.5 w-2 h-2 rounded-full bg-orange-500"></span>
-              Abhilekha Information Pvt. Ltd has a network of 350 Professionally trained Recruitment consultants working 24x7 across PAN India in order to render the service to our valuable clients at various domains.
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      {/* ================= VISION & MISSION ================= */}
+      {/* About Service Section */}
       <div className="max-w-7xl mx-auto px-6 py-20">
-        
-        <div className="grid md:grid-cols-2 gap-12">
+        <h2 className="text-4xl md:text-5xl font-black text-slate-900 text-center mb-16 uppercase tracking-tight">
+          IT Recruitment
+        </h2>
 
-          {/* Vision */}
-          <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-200 hover:shadow-2xl transition">
-            <h3 className="text-2xl font-bold text-orange-500 mb-4 uppercase tracking-wide">
-              Our Vision
-            </h3>
-            <p className="text-slate-600 leading-relaxed text-lg">
-              Aim to be the most recognized Consulting Company in India. 
-              Abhilekha's Life Time Goal is to become an International HR Service Provider.
-            </p>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="rounded-3xl overflow-hidden shadow-2xl">
+            <img
+              src={teamImage}
+              alt="Our IT Recruitment Team"
+              className="w-full h-full object-cover"
+            />
           </div>
 
-          {/* Mission */}
-          <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-200 hover:shadow-2xl transition">
-            <h3 className="text-2xl font-bold text-orange-500 mb-4 uppercase tracking-wide">
-              Our Mission
-            </h3>
-            <p className="text-slate-600 leading-relaxed text-lg">
-              We enrich people in the corporate world by providing value-added 
-              and dedicated service. We create customer delight through quality 
-              service and timely delivery.
+          <div className="space-y-8">
+            <p className="text-lg text-slate-600 leading-relaxed">
+              At <span className="font-bold text-slate-900">Abhilekha Information Pvt. Ltd</span>, we specialize in high-impact IT recruitment that keeps pace with the rapidly evolving technology landscape. Our deep expertise in software engineering, cloud computing, AI, and cybersecurity allows us to identify and attract top-tier technical talent for global enterprises and startups alike.
+            </p>
+            <p className="text-lg text-slate-600 leading-relaxed">
+              We go beyond technical skills, ensuring every candidate aligns with your company culture and project goals. Our data-driven sourcing and rigorous screening processes ensure that you receive only the most qualified professionals, ready to drive innovation and digital transformation.
             </p>
           </div>
-
         </div>
       </div>
-      {/* ===================================================== */}
 
       <div className="max-w-7xl mx-auto px-6 py-24">
-        
+
         {/* Header */}
         <div className="max-w-3xl mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
@@ -146,7 +118,7 @@ const ITProfiles = () => {
         {/* IT Sectors Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {itSectors.map((sector, idx) => (
-            <div 
+            <div
               key={idx}
               className="p-8 rounded-3xl border border-slate-200 bg-white hover:border-[#2563EB] hover:shadow-2xl hover:shadow-blue-500/5 transition-all duration-300 group"
             >
@@ -170,8 +142,9 @@ const ITProfiles = () => {
             </div>
           ))}
         </div>
-
       </div>
+
+      <GetInTouch />
     </section>
   );
 };

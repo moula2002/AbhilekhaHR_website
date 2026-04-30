@@ -1,20 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import localImageGallery1 from '../../assets/images/img_6090d824.jpg';
-import localImageGallery2 from '../../assets/images/img_03f95955.jpg';
-import localImageGallery3 from '../../assets/images/img_831c5fb1.jpg';
-import localImageGallery4 from '../../assets/images/img_e2fda545.jpg';
-import localImageGallery5 from '../../assets/images/img_6a20b781.jpg';
-import localImageGallery6 from '../../assets/images/img_398e43cb.jpg';
+
+// User provided local gallery images
+import gallary1 from '../../assets/images/Gallary 1.png';
+import gallary2 from '../../assets/images/Gallary2.png';
+import gallary3 from '../../assets/images/Gallary3.png';
+import gallary4 from '../../assets/images/gallary4.png';
+import gallary5 from '../../assets/images/gallary5.png';
 
 const Gallery = () => {
   const images = [
-    { url: localImageGallery1, title: "Team Collaboration" },
-    { url: localImageGallery4, title: "Strategy Meeting" },
-    { url: localImageGallery2, title: "Work Culture" },
-    { url: localImageGallery5, title: "Office Environment" },
-    { url: localImageGallery6, title: "Leadership" },
-    { url: localImageGallery3, title: "Celebrations" }
+    { url: gallary1, title: "Our Corporate Office" },
+    { url: gallary2, title: "Team at Work" },
+    { url: gallary3, title: "Team Celebrations" },
+    { url: gallary4, title: "Abhilekha Family" },
+    { url: gallary5, title: "Excellence in Action" }
   ];
 
   // Duplicate images for seamless infinite scroll
@@ -24,10 +24,10 @@ const Gallery = () => {
     <section id="gallery" className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-16">
         <div className="text-center">
-           <div className="inline-block px-4 py-1.5 bg-accent/5 text-accent rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-6">
+           <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-6">
              Our Culture
            </div>
-           <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter uppercase">LIFE AT <span className="text-accent">ABHILEKHA</span></h2>
+           <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter uppercase">LIFE AT <span className="text-blue-600">ABHILEKHA</span></h2>
            <p className="text-slate-500 text-lg max-w-2xl mx-auto">Glimpses into our vibrant work environment and the people who make it happen.</p>
         </div>
       </div>
@@ -36,13 +36,13 @@ const Gallery = () => {
       <div className="relative flex overflow-hidden">
         <motion.div 
           animate={{
-            x: [0, -1920],
+            x: [0, -2250], // Adjust based on total width (450px * 5)
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 40,
+              duration: 30,
               ease: "linear",
             },
           }}

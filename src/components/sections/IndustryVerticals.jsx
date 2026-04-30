@@ -15,6 +15,8 @@ import {
   Truck
 } from 'lucide-react';
 
+import industriesHero from '../../assets/images/industries_hero.jpg';
+
 const IndustryVerticals = () => {
   const verticals = [
     {
@@ -85,12 +87,20 @@ const IndustryVerticals = () => {
   return (
     <div className="pt-24 min-h-screen bg-white font-inter">
       {/* Hero Section */}
-      <div className="bg-slate-50 py-20 border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <div className="bg-slate-900 text-white py-24 md:py-36 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={industriesHero} 
+            className="w-full h-full object-cover opacity-50 grayscale-[0.2] scale-105" 
+            alt="Industries" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-slate-900/60 to-slate-900" />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-black text-slate-900 mb-6"
+            className="text-5xl md:text-8xl font-black mb-6 tracking-tighter uppercase"
           >
             Industries We <span className="text-[#D97706]">Serve</span>
           </motion.h1>
@@ -98,7 +108,7 @@ const IndustryVerticals = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-slate-500 text-lg md:text-xl max-w-3xl mx-auto"
+            className="text-slate-400 text-lg md:text-2xl max-w-3xl mx-auto leading-relaxed"
           >
             With over two decades of experience, we provide specialized recruitment solutions across a diverse range of industry sectors.
           </motion.p>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle2, Phone, Mail, MapPin, Loader2, Globe, Shield, Users } from 'lucide-react';
+import partnershipBanner from '../../assets/images/partnership_banner.jpg';
 
 const ClientEnquiry = () => {
   const [loading, setLoading] = useState(false);
@@ -62,13 +63,20 @@ const ClientEnquiry = () => {
   return (
     <div className="pt-24 min-h-screen bg-slate-50 font-inter">
       {/* Banner */}
-      <div className="bg-slate-900 text-white py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#D97706]/10 mix-blend-overlay" />
+      <div className="bg-slate-900 text-white py-20 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={partnershipBanner} 
+            className="w-full h-full object-cover opacity-40 grayscale-[0.5]" 
+            alt="Partnership" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900" />
+        </div>
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-black mb-6"
+            className="text-4xl md:text-7xl font-black mb-6 tracking-tighter uppercase"
           >
             Partner With <span className="text-[#D97706]">Abhilekha</span>
           </motion.h1>

@@ -5,18 +5,87 @@ import {
   Monitor,
   Users,
   Briefcase,
-  ChevronRight,
   Search
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { cn } from '../../lib/utils';
 import heroBanner from '../../assets/images/hero_hr.png';
+import GetInTouch from './GetInTouch';
+import recruiterITStaffing from '../../assets/images/recruiter_it_staffing.jpg';
 import staffingImg from '../../assets/images/img_553a5e3c.jpg';
 
-const ITStaffing = () => {
-  const [activeTab, setActiveTab] = useState('Recruitment');
+// Card Front Images
+import recruitmentImg from '../../assets/images/recruitment_card.jpg';
+import staffingCardImg from '../../assets/images/staffing_card.jpg';
+import consultingImg from '../../assets/images/consulting_card.jpg';
+import managementImg from '../../assets/images/management_card.jpg';
 
+const services = [
+  {
+    title: "Recruitment",
+    image: recruitmentImg,
+    content: "We understand the total Recruitment process of your organization and map it with ours and then bring the right resources to your organization which will relieve of the delivery pressures. Our Pre-Selection process of Resumes has Always been appreciated by our clients. The Clients get the advantage through our consistent improvised processes. Once we understand your requirements with several options for you to choose we also ensure the right bonding between you and resource who join-in."
+  },
+  {
+    title: "Staffing",
+    image: staffingCardImg,
+    content: "Outsourcing IT staffing process has been a key success factor of winning software organizations. IT-staffing process includes various steps of collecting job profiles, fine-tuning the skills required. Finalizing the specs of resources, calling the resources and make them to. Our Team has ready skills to provide such an End to End support to your organization. We have conducted several walk-ins along with client representatives and turned around the result with higher hit rate."
+  },
+  {
+    title: "IT Consulting",
+    image: consultingImg,
+    content: "IT Consulting has been one of the best practices followed by all the software product manufacturers and service providers. We could provide you such consultants who bring in qualities and skills for your project and make sure of increased productivity."
+  },
+  {
+    title: "Management Consultant",
+    image: managementImg,
+    content: "We provide expertise services in Registration of Companies, Industrial Relations, Personnel Management, Labour Laws, Compensation Surveys, Training & Development Programmes and Wage & Salary Administration, preparation of HR Policies and Manuals. Our dedicated team assists you in incorporating your company in a simple and economical way. We also assist those who are already into business as a proprietorship or a registered partnership firm or an LLP to convert their structure into a Private Limited Company. With a team of richly experienced members, our clients can directly talk to our experts who can assist you for all your queries and help you understand various compliances involved in the process of your company registration. We advice the management on various Labor Laws applicable to them from time to time. We also assist the Management to maintain the required registers under the following Labor enactments. This includes Factories Act, Shops & Commercial Establishment Act. ESI Act, PF Act, Minimum Wages Act, Payment of Wages, Bonus Act, Gratuity Act and other statutory enactments."
+  }
+];
+
+const FlipCard = ({ service }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <div 
+      className="relative h-[400px] w-full perspective-1000 cursor-pointer group"
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+    >
+      <motion.div
+        className="relative w-full h-full preserve-3d"
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      >
+        {/* Front */}
+        <div className="absolute inset-0 w-full h-full backface-hidden rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100">
+          <img src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent flex items-end p-8">
+            <h3 className="text-xl font-bold text-white uppercase tracking-tight">{service.title}</h3>
+          </div>
+        </div>
+
+        {/* Back */}
+        <div 
+          className="absolute inset-0 w-full h-full backface-hidden rounded-[2.5rem] bg-white p-6 shadow-2xl flex flex-col justify-center border border-blue-100"
+          style={{ transform: 'rotateY(180deg)' }}
+        >
+          <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
+             <CheckCircle2 className="text-white" size={20} />
+          </div>
+          <h3 className="text-lg font-bold text-slate-900 mb-4 uppercase tracking-tight">{service.title}</h3>
+          <div className="space-y-4 overflow-y-auto pr-2 custom-scrollbar">
+            <p className="text-slate-600 text-[13px] leading-relaxed">
+              {service.content}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+const ITStaffing = () => {
   const staffingModels = [
     {
       title: "Contract Staffing",
@@ -32,27 +101,6 @@ const ITStaffing = () => {
       title: "Managed Services",
       desc: "End-to-end management of specific IT functions or projects, allowing you to focus on your core business strategy.",
       icon: Monitor
-    }
-  ];
-
-  const services = [
-    { 
-      id: 'Recruitment', 
-      label: 'Recruitment',
-      icon: Search,
-      content: "We map your organization's unique requirements with our deep talent pool, ensuring a seamless match that alleviates delivery pressures and fuels growth."
-    },
-    { 
-      id: 'Staffing', 
-      label: 'IT Staffing',
-      icon: Users,
-      content: "Tailored solutions including contract-to-hire and direct placement, providing the right technical expertise exactly when your projects demand it."
-    },
-    { 
-      id: 'Consulting', 
-      label: 'IT Consulting',
-      icon: Monitor,
-      content: "Strategic guidance to align technology with your business goals, from digital transformation to complex infrastructure optimization."
     }
   ];
 
@@ -85,121 +133,59 @@ const ITStaffing = () => {
         </div>
       </section>
 
-      {/* 2. CORE SERVICES (Redesigned Tabs) */}
-      <section className="py-32 relative">
+      {/* 2. ABOUT STAFFING SECTION (New UI with side-by-side Image/Content) */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-10"
-            >
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">Technical Talent <span className="text-blue-600">Perfected.</span></h2>
-                <p className="text-slate-500 text-base leading-relaxed">
-                  We bridge the gap between complex technical requirements and the exceptional talent needed to execute them.
-                </p>
+           <h2 className="text-4xl md:text-5xl font-black text-slate-900 text-center mb-16 uppercase tracking-tight">
+              Flexible <span className="text-blue-600">Engagement</span> Models
+           </h2>
+
+           <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div className="rounded-[3rem] overflow-hidden shadow-2xl bg-slate-100 h-[480px]">
+                 <img src={staffingImg} alt="Technical Staffing" className="w-full h-full object-cover" />
               </div>
 
-              <div className="space-y-4">
-                {services.map((s) => (
-                  <button
-                    key={s.id}
-                    onClick={() => setActiveTab(s.id)}
-                    className={cn(
-                      "w-full text-left p-6 rounded-2xl border transition-all duration-300 flex items-start gap-5",
-                      activeTab === s.id 
-                        ? "bg-white border-blue-100 shadow-xl shadow-blue-500/5 ring-1 ring-blue-500/10" 
-                        : "bg-transparent border-transparent grayscale opacity-60 hover:opacity-100"
-                    )}
-                  >
-                    <div className={cn(
-                      "w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors",
-                      activeTab === s.id ? "bg-blue-600 text-white" : "bg-slate-200 text-slate-600"
-                    )}>
-                      <s.icon size={24} />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-bold text-slate-900 mb-1">{s.label}</h4>
-                      <AnimatePresence mode="wait">
-                        {activeTab === s.id && (
-                          <motion.p 
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="text-slate-500 text-sm leading-relaxed"
-                          >
-                            {s.content}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  </button>
-                ))}
+              <div className="space-y-10">
+                 <p className="text-xl text-slate-600 leading-relaxed font-medium">
+                    Adapting to your project lifecycle and business objectives with precision and scale. We offer specialized staffing solutions designed to meet the dynamic needs of modern tech enterprises.
+                 </p>
+                 
+                 <div className="space-y-8">
+                    {staffingModels.map((model, idx) => (
+                       <div key={idx} className="flex gap-6 group">
+                          <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                             <model.icon size={28} />
+                          </div>
+                          <div>
+                             <h4 className="text-xl font-bold text-slate-900 mb-2">{model.title}</h4>
+                             <p className="text-slate-500 leading-relaxed">{model.desc}</p>
+                          </div>
+                       </div>
+                    ))}
+                 </div>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white bg-white aspect-[4/5]">
-                <img src={staffingImg} alt="IT Professional" className="w-full h-full object-cover" />
-              </div>
-              <div className="absolute -bottom-10 -left-10 bg-blue-600 p-10 rounded-[2rem] text-white shadow-2xl hidden xl:block">
-                <div className="text-5xl font-black mb-2">20+</div>
-                <div className="text-xs font-bold uppercase tracking-widest text-blue-100">Years of Experience</div>
-              </div>
-            </motion.div>
-          </div>
+           </div>
         </div>
       </section>
 
-      {/* 3. STAFFING MODELS */}
-      <section className="py-32 bg-slate-900 text-white overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-600/10 blur-3xl rounded-full" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+      {/* 3. CORE SERVICES (Flip Cards) */}
+      <section className="py-24 bg-slate-50 relative">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-2xl md:text-4xl font-bold mb-6 tracking-tight">Flexible Engagement <span className="text-blue-400">Models</span></h2>
-            <p className="text-slate-400 text-base">Adapting to your project lifecycle and business objectives.</p>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 uppercase tracking-tight">Our <span className="text-blue-600">Core Services</span></h2>
+            <p className="text-slate-500 text-lg">We bridge the gap between complex technical requirements and the exceptional talent needed to execute them.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {staffingModels.map((model, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:bg-white/10 transition-all duration-300 group">
-                <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                  <model.icon size={32} className="text-white" />
-                </div>
-                <h4 className="text-xl font-bold mb-4">{model.title}</h4>
-                <p className="text-slate-400 leading-relaxed text-xs">{model.desc}</p>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, idx) => (
+              <FlipCard key={idx} service={service} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. CTA SECTION */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-6">
-           <div className="bg-slate-900 rounded-[3.5rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl">
-              <div className="absolute top-0 right-0 w-80 h-80 bg-blue-600/10 blur-3xl -translate-y-1/2 translate-x-1/2" />
-              <div className="relative z-10">
-                <h3 className="text-3xl md:text-6xl font-black text-white mb-8 tracking-tighter">
-                  Scale Your <span className="text-blue-400 italic">Technical Excellence.</span>
-                </h3>
-                <p className="text-slate-400 text-lg mb-12 max-w-2xl mx-auto font-medium">
-                  Connect with India's most trusted IT staffing partner to build your dream engineering team.
-                </p>
-                <Link to="/contact" className="inline-flex items-center gap-3 bg-blue-600 hover:bg-white hover:text-blue-600 text-white px-12 py-5 rounded-2xl font-bold text-xl transition-all shadow-xl hover:scale-105 active:scale-95">
-                  Get Started Today <ArrowRight size={24} />
-                </Link>
-              </div>
-           </div>
-        </div>
-      </section>
+      {/* 4. CONTACT SECTION */}
+      <GetInTouch image={recruiterITStaffing} />
 
     </div>
   );

@@ -7,6 +7,7 @@ import ITProfiles from './components/sections/ITProfiles';
 import NonITProfiles from './components/sections/NonITProfiles';
 import ITStaffing from './components/sections/ITStaffing';
 import TrainingProgrammes from './components/sections/TrainingProgrammes';
+import TrainingAndDevelopment from './components/sections/TrainingAndDevelopment';
 import AboutPage from './components/sections/AboutPage';
 import JobsOpeningspage from './components/sections/JobsOpeningspage';
 import ContactPage from './components/sections/ContactPage';
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/non-it-recruitment" element={<NonITProfiles />} />
           <Route path="/it-staffing" element={<ITStaffing />} />
           <Route path="/training-programmes" element={<TrainingProgrammes />} />
+          <Route path="/training-development" element={<TrainingAndDevelopment />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/careers" element={<JobsOpeningspage />} />
           <Route path="/candidates" element={<Candidates />} />

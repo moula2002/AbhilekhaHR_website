@@ -50,7 +50,7 @@ const Footer = () => {
                 <Youtube size={16} />
               </a>
 
-              <a href="https://www.instagram.com/popular/abhilekha-information-pvt-ltd/" target="_blank" rel="noopener noreferrer" 
+              <a href="https://www.instagram.com/popular/abhilekha-information-pvt-ltd/" target="_blank" rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-[#e4405f] hover:bg-[#e4405f] hover:text-white transition-all duration-300">
                 <Instagram size={16} />
               </a>
@@ -66,6 +66,7 @@ const Footer = () => {
                 { name: "Non-IT Recruitment", to: "/non-it-recruitment" },
                 { name: "IT Staffing", to: "/it-staffing" },
                 { name: "Training Programmes", to: "/training-programmes" },
+                { name: "Training & Development", to: "/training-development" },
                 { name: "Industry Verticals", to: "/industry-verticals" }
               ].map((link) => (
                 <li key={link.name}>
@@ -128,7 +129,7 @@ const Footer = () => {
                 <div>
                   <span className="text-[10px] font-black text-white/40 uppercase">Pune</span>
                   <p className="text-white/60 text-[11px]">
-                     Office no 504, 5th floor the Stellar Business Hub near New Poona Bakery Marunge road Wakad Pune Maharashtra 411057
+                    Office no 504, 5th floor the Stellar Business Hub near New Poona Bakery Marunge road Wakad Pune Maharashtra 411057
                   </p>
                 </div>
               </div>
