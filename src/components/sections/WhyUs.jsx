@@ -120,12 +120,12 @@ const WhyUs = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Link 
-                to="/contact" 
+              <button 
+                onClick={() => window.dispatchEvent(new CustomEvent('toggle-inquiry-modal'))}
                 className="inline-block bg-[#2563EB] hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold text-base transition-all shadow-lg hover:shadow-blue-200"
               >
                 Reach Us Now
-              </Link>
+              </button>
             </motion.div>
           </div>
 

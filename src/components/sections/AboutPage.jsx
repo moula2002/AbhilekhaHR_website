@@ -83,14 +83,14 @@ const AboutPage = () => {
       {/* 2. Transforming Ideas Section */}
       <section className="py-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-12 gap-16 items-center">
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative order-2 lg:order-1"
+              className="lg:col-span-5 order-2 lg:order-1"
             >
-              <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-slate-50">
+              <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-slate-50 max-w-md mx-auto lg:mx-0">
                 <img src={aboutTeamHero} alt="Our Team" className="w-full h-auto" />
               </div>
             </motion.div>
@@ -98,7 +98,7 @@ const AboutPage = () => {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-8 order-1 lg:order-2"
+              className="lg:col-span-7 space-y-8 order-1 lg:order-2"
             >
               <h2 className="text-[36px] md:text-[52px] font-bold leading-tight text-slate-900">
                 <span className="text-[#2563EB]">Transforming Ideas</span> into Scalable Solutions
@@ -153,14 +153,14 @@ const AboutPage = () => {
       {/* 4. Our Mission Section */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-12 gap-16 items-center">
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="order-2 lg:order-1"
+              className="lg:col-span-5 order-2 lg:order-1"
             >
-              <div className="rounded-[2.5rem] overflow-hidden shadow-2xl">
+              <div className="rounded-[2.5rem] overflow-hidden shadow-2xl max-w-md mx-auto lg:mx-0">
                 <img src={aboutMission} alt="Our Mission" className="w-full h-auto" />
               </div>
             </motion.div>
@@ -168,7 +168,7 @@ const AboutPage = () => {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="order-1 lg:order-2 space-y-8"
+              className="lg:col-span-7 order-1 lg:order-2 space-y-8"
             >
               <h2 className="text-[36px] md:text-[52px] font-bold text-slate-900">Our mission</h2>
               <div className="space-y-6">
@@ -184,12 +184,12 @@ const AboutPage = () => {
       {/* 5. Our Vision Section */}
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-12 gap-16 items-center">
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="lg:col-span-7 space-y-8"
             >
               <h2 className="text-[36px] md:text-[52px] font-bold text-slate-900">Our Vision</h2>
               <div className="space-y-6">
@@ -202,7 +202,7 @@ const AboutPage = () => {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="rounded-[2.5rem] overflow-hidden shadow-2xl"
+              className="lg:col-span-5 rounded-[2.5rem] overflow-hidden shadow-2xl max-w-md mx-auto lg:mx-0"
             >
               <img src={aboutVision} alt="Our Vision" className="w-full h-auto" />
             </motion.div>

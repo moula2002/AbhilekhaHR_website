@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Phone, Mail, Clock, MapPin, Star, ArrowRight } from 'lucide-react';
+import { Menu, X as CloseIcon, ChevronDown, Phone, Mail, Clock, MapPin, Star, ArrowRight } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Instagram, Youtube } from '../ui/BrandIcons';
+import { Facebook, X as XIcon, Linkedin, Instagram, Youtube } from '../ui/BrandIcons';
 import { cn } from '../../lib/utils';
 import logo from '../../assets/logo.png';
 
@@ -32,6 +32,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', to: '/', active: pathname === '/' },
     { name: 'About Us', to: '/about', active: pathname === '/about' },
+    { name: 'Candidates', to: '/candidates', active: pathname === '/candidates' },
     {
       name: 'Services',
       hasDropdown: true,
@@ -46,8 +47,8 @@ const Navbar = () => {
       name: 'Client Zone',
       hasDropdown: true,
       items: [
-        { label: 'Client Enquiry', to: '/contact' },
-        { label: 'Industry Verticals', to: '/#services' },
+        { label: 'Client Enquiry', to: '/client-enquiry' },
+        { label: 'Industry Verticals', to: '/industry-verticals' },
       ]
     },
     { name: 'Contact Us', to: '/contact', active: pathname === '/contact' },
@@ -79,10 +80,10 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <span className="hidden lg:inline-block text-white/50 mr-2">Follow Us:</span>
             <div className="flex items-center gap-3">
-              <a href="https://www.facebook.com/AbhilekhaJobs" target="_blank" rel="noopener noreferrer"><Facebook size={14} className="hover:text-[#D97706] transition-all cursor-pointer" /></a>
-              <a href="https://x.com/AbhikelhaInfo" target="_blank" rel="noopener noreferrer"><Twitter size={14} className="hover:text-[#D97706] transition-all cursor-pointer" /></a>
-              <a href="https://in.linkedin.com/company/abhilekha-information-pvt-ltd---india" target="_blank" rel="noopener noreferrer"><Linkedin size={14} className="hover:text-[#D97706] transition-all cursor-pointer" /></a>
-              <a href="https://www.instagram.com/popular/abhilekha-information-pvt-ltd/" target="_blank" rel="noopener noreferrer"><Instagram size={14} className="hover:text-[#D97706] transition-all cursor-pointer" /></a>
+              <a href="https://www.facebook.com/AbhilekhaJobs" target="_blank" rel="noopener noreferrer"><Facebook size={14} className="text-[#1877f2] hover:text-white transition-all cursor-pointer" /></a>
+              <a href="https://x.com/AbhikelhaInfo" target="_blank" rel="noopener noreferrer"><XIcon size={14} className="text-white hover:text-white/50 transition-all cursor-pointer" /></a>
+              <a href="https://in.linkedin.com/company/abhilekha-information-pvt-ltd---india" target="_blank" rel="noopener noreferrer"><Linkedin size={14} className="text-[#0077b5] hover:text-white transition-all cursor-pointer" /></a>
+              <a href="https://www.instagram.com/popular/abhilekha-information-pvt-ltd/" target="_blank" rel="noopener noreferrer"><Instagram size={14} className="text-[#e4405f] hover:text-white transition-all cursor-pointer" /></a>
             </div>
           </div>
         </div>
@@ -169,7 +170,7 @@ const Navbar = () => {
               className="lg:hidden w-10 h-10 flex items-center justify-center bg-slate-50 hover:bg-slate-100 rounded text-slate-900 transition-colors" 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? <CloseIcon size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -252,7 +253,7 @@ const Navbar = () => {
             </a>
             <div className="flex items-center gap-4 mt-2">
               <a href="https://www.facebook.com/AbhilekhaJobs" target="_blank" rel="noopener noreferrer"><Facebook size={18} className="text-slate-400 hover:text-[#D97706] transition-colors" /></a>
-              <a href="https://x.com/AbhikelhaInfo" target="_blank" rel="noopener noreferrer"><Twitter size={18} className="text-slate-400 hover:text-[#D97706] transition-colors" /></a>
+              <a href="https://x.com/AbhikelhaInfo" target="_blank" rel="noopener noreferrer"><XIcon size={18} className="text-slate-900 hover:text-black transition-colors" /></a>
               <a href="https://in.linkedin.com/company/abhilekha-information-pvt-ltd---india" target="_blank" rel="noopener noreferrer"><Linkedin size={18} className="text-slate-400 hover:text-[#D97706] transition-colors" /></a>
               <a href="https://www.instagram.com/popular/abhilekha-information-pvt-ltd/" target="_blank" rel="noopener noreferrer"><Instagram size={18} className="text-slate-400 hover:text-[#D97706] transition-colors" /></a>
             </div>

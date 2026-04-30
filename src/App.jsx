@@ -10,6 +10,12 @@ import TrainingProgrammes from './components/sections/TrainingProgrammes';
 import AboutPage from './components/sections/AboutPage';
 import JobsOpeningspage from './components/sections/JobsOpeningspage';
 import ContactPage from './components/sections/ContactPage';
+import Candidates from './components/sections/Candidates';
+import FloatingContactButtons from './components/layout/FloatingContactButtons';
+import ClientEnquiry from './components/sections/ClientEnquiry';
+import IndustryVerticals from './components/sections/IndustryVerticals';
+import PrivacyPolicy from './components/sections/PrivacyPolicy';
+import TermsOfService from './components/sections/TermsOfService';
 
 // Scroll to top on navigation
 const ScrollToTop = () => {
@@ -34,8 +40,14 @@ const App = () => {
           <Route path="/training-programmes" element={<TrainingProgrammes />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/careers" element={<JobsOpeningspage />} />
+          <Route path="/candidates" element={<Candidates />} />
+          <Route path="/client-enquiry" element={<ClientEnquiry />} />
+          <Route path="/industry-verticals" element={<IndustryVerticals />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
+        <FloatingContactButtons />
         <Footer />
       </div>
     </Router>

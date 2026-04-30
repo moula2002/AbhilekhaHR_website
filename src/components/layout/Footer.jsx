@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Globe } from 'lucide-react';
-import { Facebook, Twitter, Instagram, Linkedin, Youtube } from '../ui/BrandIcons';
+import { Link } from 'react-router-dom';
+import { Facebook, X, Instagram, Linkedin, Youtube } from '../ui/BrandIcons';
 import logo from '../../assets/logo.png';
 
 const Footer = () => {
@@ -28,29 +29,29 @@ const Footer = () => {
               India's trusted HR partner with 20+ years of legacy. Delivering elite recruitment and training solutions across Bangalore, Hyderabad, and Pune.
             </p>
 
-            {/* ✅ Social Links Updated */}
+            {/* ✅ Social Links with Brand Colors */}
             <div className="flex gap-3">
               <a href="https://in.linkedin.com/company/abhilekha-information-pvt-ltd---india" target="_blank" rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:bg-[#F29100] hover:text-white transition-all duration-300">
+                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-[#0077b5] hover:bg-[#0077b5] hover:text-white transition-all duration-300">
                 <Linkedin size={16} />
               </a>
 
               <a href="https://x.com/AbhikelhaInfo" target="_blank" rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:bg-[#F29100] hover:text-white transition-all duration-300">
-                <Twitter size={16} />
+                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300">
+                <X size={16} />
               </a>
 
               <a href="https://www.facebook.com/AbhilekhaJobs" target="_blank" rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:bg-[#F29100] hover:text-white transition-all duration-300">
+                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-[#1877f2] hover:bg-[#1877f2] hover:text-white transition-all duration-300">
                 <Facebook size={16} />
               </a>
 
-              {/* Keeping existing icons but no links provided */}
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/40">
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-[#ff0000] hover:bg-[#ff0000] hover:text-white transition-all duration-300">
                 <Youtube size={16} />
               </a>
 
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/40">
+              <a href="https://www.instagram.com/popular/abhilekha-information-pvt-ltd/" target="_blank" rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-[#e4405f] hover:bg-[#e4405f] hover:text-white transition-all duration-300">
                 <Instagram size={16} />
               </a>
             </div>
@@ -60,12 +61,18 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-black text-lg mb-8 tracking-tight uppercase">Our Solutions</h4>
             <ul className="space-y-4">
-              {["Executive Recruitment", "IT Staffing Solutions", "Management Consulting", "Statutory Compliance", "Corporate Training"].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-white/40 hover:text-[#F29100] text-xs font-bold flex items-center gap-2 group transition-colors uppercase tracking-widest">
+              {[
+                { name: "IT Recruitment", to: "/it-recruitment" },
+                { name: "Non-IT Recruitment", to: "/non-it-recruitment" },
+                { name: "IT Staffing", to: "/it-staffing" },
+                { name: "Training Programmes", to: "/training-programmes" },
+                { name: "Industry Verticals", to: "/industry-verticals" }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link to={link.to} className="text-white/40 hover:text-[#F29100] text-xs font-bold flex items-center gap-2 group transition-colors uppercase tracking-widest">
                     <span className="w-1 h-1 bg-white/10 rounded-full group-hover:bg-[#F29100]" />
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -75,12 +82,18 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-black text-lg mb-8 tracking-tight uppercase">Company</h4>
             <ul className="space-y-4">
-              {["About Our Legacy", "Join Our Team", "Client Testimonials", "Global Reach", "Quality Policy"].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-white/40 hover:text-[#F29100] text-xs font-bold flex items-center gap-2 group transition-colors uppercase tracking-widest">
+              {[
+                { name: "About Us", to: "/about" },
+                { name: "Candidates", to: "/candidates" },
+                { name: "Jobs Opening", to: "/careers" },
+                { name: "Client Enquiry", to: "/client-enquiry" },
+                { name: "Contact Us", to: "/contact" }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link to={link.to} className="text-white/40 hover:text-[#F29100] text-xs font-bold flex items-center gap-2 group transition-colors uppercase tracking-widest">
                     <span className="w-1 h-1 bg-white/10 rounded-full group-hover:bg-[#F29100]" />
-                    {link}
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -126,13 +139,19 @@ const Footer = () => {
 
         {/* Bottom */}
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-white/30 text-[9px] font-black uppercase">
-            © {currentYear} Abhilekha Information Pvt. Ltd.
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            <p className="text-white/30 text-[9px] font-black uppercase">
+              © {currentYear} Abhilekha Information Pvt. Ltd.
+            </p>
+            <span className="hidden md:block w-1 h-1 bg-white/10 rounded-full" />
+            <p className="text-white/30 text-[9px] font-black uppercase">
+              Developed by <span className="text-[#F29100]">INNOMATRICS TECHNOLOGIES</span>
+            </p>
+          </div>
 
           <div className="flex gap-8">
-            <a href="#" className="text-white/30 text-[9px] font-black">Privacy Policy</a>
-            <a href="#" className="text-white/30 text-[9px] font-black">Terms of Service</a>
+            <Link to="/privacy-policy" className="text-white/30 text-[9px] font-black uppercase">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="text-white/30 text-[9px] font-black uppercase">Terms of Service</Link>
           </div>
         </div>
       </div>

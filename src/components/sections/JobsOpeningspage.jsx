@@ -15,16 +15,13 @@ import {
   ChevronRight,
   FileText
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const JobsOpeningspage = () => {
+  const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedJobId, setExpandedJobId] = useState(null);
-  const [formData, setFormData] = useState({
-    name: '', email: '', phone: '', position: '', experience: '', resume: null, message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
 
   // Fallback data
   const staticJobs = [
@@ -62,52 +59,6 @@ const JobsOpeningspage = () => {
     };
     fetchJobs();
   }, []);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      let resumeBase64 = null;
-      if (formData.resume) {
-        resumeBase64 = await new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result);
-          reader.readAsDataURL(formData.resume);
-        });
-      }
-
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          position: formData.position,
-          experience: formData.experience,
-          resumeData: resumeBase64,
-          resumeName: formData.resume?.name,
-          message: formData.message || `Application for ${formData.position} from ${formData.name}.`
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitted(true);
-        setFormData({ name: '', email: '', phone: '', position: '', experience: '', resume: null, message: '' });
-        setTimeout(() => setSubmitted(false), 5000);
-      } else {
-        alert("Failed to submit application. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error submitting application:", error);
-      alert("An error occurred. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="bg-[#F8FAFC] pt-48 pb-20 font-inter">
@@ -220,8 +171,7 @@ const JobsOpeningspage = () => {
                         </button>
                         <button 
                           onClick={() => {
-                            document.getElementById('apply-form')?.scrollIntoView({ behavior: 'smooth' });
-                            setFormData(prev => ({ ...prev, position: job.title }));
+                            navigate('/candidates', { state: { position: job.title } });
                           }}
                           className="px-8 py-2.5 bg-slate-900 text-white rounded-md font-bold text-[13px] hover:bg-black transition-colors uppercase shadow-lg shadow-slate-900/20"
                         >
@@ -232,100 +182,6 @@ const JobsOpeningspage = () => {
                   );
                 })
               )}
-            </div>
-
-            {/* Quick Apply Form Section */}
-            <div id="apply-form" className="mt-12 bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm scroll-mt-24">
-               <div className="bg-slate-900 px-8 py-4">
-                  <h3 className="text-white font-bold uppercase tracking-widest text-sm flex items-center gap-2">
-                    <Upload size={18} /> Quick Resume Submission
-                  </h3>
-               </div>
-               <div className="p-8">
-                  <form className="grid md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
-                    <div className="md:col-span-2 space-y-2">
-                      <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Applying for Position</label>
-                      <input 
-                        type="text" 
-                        value={formData.position}
-                        onChange={(e) => setFormData({...formData, position: e.target.value})}
-                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded focus:outline-none focus:border-slate-900 transition-all font-semibold" 
-                        placeholder="e.g. HR / Full Stack Developer" 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Full Name *</label>
-                      <input 
-                        type="text" 
-                        value={formData.name}
-                        onChange={(e) => setFormData({...formData, name: e.target.value})}
-                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded focus:outline-none focus:border-slate-900 transition-all" 
-                        placeholder="Enter name" 
-                        required 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Email Address *</label>
-                      <input 
-                        type="email" 
-                        value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
-                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded focus:outline-none focus:border-slate-900 transition-all" 
-                        placeholder="Enter email" 
-                        required 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Phone *</label>
-                      <input 
-                        type="tel" 
-                        value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded focus:outline-none focus:border-slate-900 transition-all" 
-                        placeholder="Enter mobile" 
-                        required 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Experience *</label>
-                      <input 
-                        type="text" 
-                        value={formData.experience}
-                        onChange={(e) => setFormData({...formData, experience: e.target.value})}
-                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded focus:outline-none focus:border-slate-900 transition-all" 
-                        placeholder="e.g. 2 Years" 
-                        required 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Resume Upload *</label>
-                      <input 
-                        type="file" 
-                        onChange={(e) => setFormData({...formData, resume: e.target.files[0]})}
-                        className="w-full bg-slate-50 border-2 border-dashed border-slate-200 p-2.5 rounded text-sm text-slate-500" 
-                        required 
-                      />
-                    </div>
-                    <div className="md:col-span-2 space-y-2">
-                      <label className="text-[11px] font-black uppercase tracking-widest text-slate-400">Message / Cover Note</label>
-                      <textarea 
-                        value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded focus:outline-none focus:border-slate-900 transition-all min-h-[100px] resize-none" 
-                        placeholder="Tell us more about yourself..." 
-                      />
-                    </div>
-                    <div className="md:col-span-2 pt-2">
-                      <button 
-                        type="submit" 
-                        disabled={loading}
-                        className="w-full bg-slate-900 text-white py-4 rounded font-bold uppercase tracking-widest hover:bg-black transition-all shadow-md disabled:opacity-50"
-                      >
-                        {submitted ? "Submitted Successfully!" : "Submit Resume"}
-                      </button>
-                    </div>
-                  </form>
-               </div>
             </div>
           </div>
 
@@ -341,7 +197,7 @@ const JobsOpeningspage = () => {
                  Can't find what you're looking for? Contact our recruitment team for assistance.
                </p>
                <div className="space-y-4">
-                  <a href="mailto:hr@abhilekha.com" className="flex items-center gap-3 text-slate-900 font-bold text-[14px] hover:translate-x-1 transition-transform">
+                  <a href="mailto:info@abhilekha.com" className="flex items-center gap-3 text-slate-900 font-bold text-[14px] hover:translate-x-1 transition-transform">
                     <Mail size={18} /> Email Us
                   </a>
                   <a href="tel:+918023400510" className="flex items-center gap-3 text-slate-900 font-bold text-[14px] hover:translate-x-1 transition-transform">
