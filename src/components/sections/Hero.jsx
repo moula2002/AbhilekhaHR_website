@@ -6,7 +6,7 @@ import heroImg from '../../assets/images/hero_hr.png';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-[80vh] flex items-start pt-12 pb-20 overflow-hidden bg-[#020C1F] font-inter">
+    <section id="home" className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden bg-[#020C1F] font-inter">
       {/* Dynamic Background Decorations */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
